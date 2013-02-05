@@ -61,7 +61,8 @@ class HelperToken extends Commons
 		try 
 		{
 			$this->_tokensCollection->insert(array("token" => $this->_model->token,
-													"userId" => $user['userId']));
+													"userId" => $user['userId'],
+													"created" => $this->_model->created));
 		}
 		catch (Exception $e) 
 		{

@@ -16,6 +16,10 @@ class ModelToken extends Commons
 	 * @var
 	 */
 	public $password;
+	/**
+	 * @var
+	 */
+	public $created;
 
 	/**
 	 * Create a token
@@ -26,6 +30,7 @@ class ModelToken extends Commons
 		$this->token = UtilCrypto::createRandom36(KIMIA_TOKEN_LENGTH);
 		$this->email = $email;
 		$this->password = $password;
+		$this->created = new MongoDate();
 		self::debug('Model constructed with parameters: ' . $this->token . ', ' . $this->email . '.');
 	}
 }

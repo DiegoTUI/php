@@ -113,7 +113,9 @@ class HelperUser extends Commons
 												'passwordHash' => $this->_model->passwordHash,
 												'salt' => $this->_model->salt,
 												'iterations' => $this->_model->iterations,
-												'roleId' => $this->_model->roleId));
+												'roleId' => $this->_model->roleId,
+												'created' => $this->_model->created,
+												'lastModified' => $this->_model->created));
 		}
 		catch (Exception $e) 
 		{
@@ -169,16 +171,6 @@ class HelperUser extends Commons
 		UtilAuth::getInstance()->checkServicePermissions($this->_token, "modify_user");
 
 		//update user in mongoDB database, including iterations and salt
-		$sql = "update users set userName='" . $this->_model->userName .
-									"', email='" . $this->_model->email .
-									"', passwordHash='" . $this->_model->passwordHash .
-									"', salt='" . $this->_model->salt .
-									"', iterations='" . $this->_model->iterations .
-									"', roleId='" . $this->_model->roleId .
-									"' where userId='" . $this->_model->userId . "'";
-
-		self::debug('Updating user: [' . $sql . ']');
-
 		try 
 		{
 			$this->_usersCollection->update(array('userId' => $this->_model->userId),
@@ -187,7 +179,8 @@ class HelperUser extends Commons
 																	'passwordHash' =>  $this->_model->passwordHash,
 																	'salt' =>  $this->_model->salt,
 																	'iterations' =>  $this->_model->iterations,
-																	'roleId' =>  $this->_model->roleId) ));
+																	'roleId' =>  $this->_model->roleId,
+																	'lastModified' => $this->_model->created) ));
 		}
 		catch (Exception $e) 
 		{

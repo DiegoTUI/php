@@ -1,6 +1,7 @@
 <?php
 
-//include_once(__DIR__ . '/../../common/frameworkInclude.php');
+include_once '../controller/Token.php';
+include_once './util/Commons.php'
 
 class LoginTest extends PHPUnit_Framework_TestCase
 {
@@ -11,7 +12,7 @@ class LoginTest extends PHPUnit_Framework_TestCase
 	 */
 	protected function setUp()
 	{
-		//$this->_common = new Test_Util_Common();
+		$this->_common = new TestCommons();
 		ob_start();
 	}
 
@@ -21,12 +22,12 @@ class LoginTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testLoginValidUser()
 	{
-		/*//login with "pechodelata" user
-		$_REQUEST["email"] = "pechodelata@kimia.es";
-		$_REQUEST["password"] = "pechodelata";
+		//login with "pechodelata" user
+		$_REQUEST["email"] = "dlafuente@tuitravel-ad.com";
+		$_REQUEST["password"] = "dlafuente";
 		
 		//perform a valid login
-		$token = $this->_common->validLogin();*/
+		$token = $this->_common->validLogin();
 
 		//clean the buffer for next test
 		ob_clean();

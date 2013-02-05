@@ -32,6 +32,10 @@ class ModelUser extends Commons
 	 * @var
 	 */
 	public $roleId;
+	/**
+	 * @var
+	 */
+	public $created;
 	
 
 	/**
@@ -55,6 +59,7 @@ class ModelUser extends Commons
 		$this->salt = $arrayPassword['salt'];
 		$this->iterations = $arrayPassword['iterations'];
 		$this->roleId = $roleId;
+		$this->created = new MongoDate();
 		self::debug('Model constructed with parameters: ' . $this->userId . ', ' . $this->userName . ', '. $this->email . ', ' . $this->roleId . '.');
 	}
 
@@ -71,6 +76,7 @@ class ModelUser extends Commons
 		$this->salt = $arrayPassword['salt'];
 		$this->iterations = $arrayPassword['iterations'];
 		$this->roleId = $roleId;
+		$this->created = new MongoDate();
 		self::debug('Model constructed with parameters: ' . $this->userId . ', ' . $this->userName . ', '. $this->email . ', ' . $this->roleId . '.');
 	}
 
@@ -86,6 +92,7 @@ class ModelUser extends Commons
 		$this->salt = $salt;
 		$this->iterations = $iterations;
 		$this->roleId = $roleId;
+		$this->created = new MongoDate();
 		self::debug('Model constructed with parameters: ' . $this->userId . ', ' . $this->userName . ', '. $this->email . ', ' . $this->roleId . '.');
 	}
 }
