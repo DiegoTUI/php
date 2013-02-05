@@ -6,8 +6,8 @@ $password = $_REQUEST["password"];
 
 $arrayPassword = UtilCrypto::createPasswordHash($password,10000);
 
-echo "hash: " . $arrayPassword['hash'];
-echo "salt: " . $arrayPassword['salt'];
-echo "iterations: " . $arrayPassword['iterations'];
+echo "hash: " . $arrayPassword['hash'] . "</br>";
+echo "salt: " . $arrayPassword['salt']  . "</br>";
+echo "iterations: " . $arrayPassword['iterations'] . "</br>";
 
 ?>
