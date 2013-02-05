@@ -1,5 +1,8 @@
 <?php
-class Controller_Rest_Model_User extends Kimia_Commons
+
+include_once '/util/Commons.php';
+
+class ModelUser extends Commons
 {
 	/**
 	 * @var
@@ -29,6 +32,7 @@ class Controller_Rest_Model_User extends Kimia_Commons
 	 * @var
 	 */
 	public $roleId;
+	
 
 	/**
 	 * Create an empty user
@@ -43,10 +47,10 @@ class Controller_Rest_Model_User extends Kimia_Commons
 	 */
 	public function generateUser ($userName, $email, $password, $roleId)
 	{
-		$this->userId = Kimia_Model_Crypto::createRandom36(KIMIA_ADMIN_LENGTH);
+		$this->userId = UtilCrypto::createRandom36(KIMIA_ADMIN_LENGTH);
 		$this->userName = $userName;
 		$this->email = $email;
-		$arrayPassword = Kimia_Model_Crypto::createPasswordHash($password,10000);
+		$arrayPassword = UtilCrypto::createPasswordHash($password,10000);
 		$this->passwordHash = $arrayPassword['hash'];
 		$this->salt = $arrayPassword['salt'];
 		$this->iterations = $arrayPassword['iterations'];
@@ -62,7 +66,7 @@ class Controller_Rest_Model_User extends Kimia_Commons
 		$this->userId = $userId;
 		$this->userName = $userName;
 		$this->email = $email;
-		$arrayPassword = Kimia_Model_Crypto::createPasswordHash($password,10000);
+		$arrayPassword = UtilCrypto::createPasswordHash($password,10000);
 		$this->passwordHash = $arrayPassword['hash'];
 		$this->salt = $arrayPassword['salt'];
 		$this->iterations = $arrayPassword['iterations'];

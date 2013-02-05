@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Singleton Log class:
+ * Singleton Logging class:
  * - contains lfile, lwrite and lclose public methods
  * - lfile sets path and name of log file
  * - lwrite writes message to the log file (and implicitly opens log file)
@@ -9,21 +9,27 @@
  * - first call of lwrite method will open log file implicitly
  * - message is written with the following format: [d/M/Y:H:i:s] (script name) message
  */
-class Log {
+class Logging {
+	
+	/**
+	 * Singleton instance for this class.
+	 */
+	private static $_instance;
 
 	// declare log file and file pointer as private properties
-	private static $log_file = "/var/tuiinnovation/log/php.log";
-    private $log_file, $fp;
+	private $log_file = "/var/tuiinnovation/log/php.log";
+    private $fp;
 	
 	//Singleton constructor
 	public static function getInstance()
-    {
-        static $inst = null;
-        if ($inst === null) {
-            $inst = new UserFactory();
-        }
-        return $inst;
-    }
+	{
+		if (self::$_instance == NULL) 
+		{
+			self::$_instance = new self();
+		}
+
+		return self::$_instance;
+	}
 	
     //Private ctor so nobody else can instance it
     private function __construct()

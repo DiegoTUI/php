@@ -2,7 +2,9 @@
 
 $m = new Mongo();
 $db = $m->test;
-$collection_objects = $db->objects;
+$objects = 'objects';
+//$collection_objects = $db->objects;
+$collection_objects = $db->$objects;
 
 $elements = $collection_objects->find();
 

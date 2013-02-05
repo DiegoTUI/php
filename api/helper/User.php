@@ -1,5 +1,10 @@
 <?php
-class Controller_Rest_Helper_User extends Kimia_Profile_Database
+
+include_once '../Model/User.php';
+include_once '../Util/Auth';
+include_once '../Util/MongoDB.php';
+
+class HelperUser extends Commons
 {
 	/**
 	 * @var \Controller_Rest_Model_User
@@ -10,6 +15,11 @@ class Controller_Rest_Helper_User extends Kimia_Profile_Database
 	 * @var \token
 	 */
 	private $_token;
+	
+	/**
+	 * @var  \collection of users
+	 */
+	private $_usersCollection;
 
 	/**
 	 * Constructor
@@ -19,7 +29,8 @@ class Controller_Rest_Helper_User extends Kimia_Profile_Database
 		self::debug('init');
 		parent::__construct();
 		$this->_token = $token;
-		$this->_model = new Controller_Rest_Model_User();
+		$this->_model = new ModelUser();
+		$this->_usersCollection = MongoDB::getInstance()->getCollection('users');
 	}
 
 	/**
@@ -35,18 +46,17 @@ class Controller_Rest_Helper_User extends Kimia_Profile_Database
 	 */
 	public function prepareRemoveReadUser($userId)
 	{
-		//search the userId in table users of mySQL
-		$sql = "select * from users where userId ='" . $userId . "'";
-		self::debug('Querying users for userId: [' . $sql . ']');
-		$row = $this->_database->getInstance()->_db->fetchOneRow($sql);
+		//search the userId in table users of MongoDB
+		$user = $this->_usersCollection->findOne(array('userId' => $userId));
+		self::debug('Querying users for userId: [' . $userId . ']');
 
-		if (!$row)
+		if (!$user)
 		{
 			throw new NotFoundException("User not found");
 		}
 		else
 		{
-			$this->_model->createFullUser ($userId, $row->userName, $row->email, $row->passwordHash, $row->salt, $row->iterations, $row->roleId);
+			$this->_model->createFullUser ($userId, $user['userName'], $user['email'], $user['passwordHash'], $user['salt'], $user['iterations'], $user['roleId']);
 		}
 	}
 
@@ -55,21 +65,20 @@ class Controller_Rest_Helper_User extends Kimia_Profile_Database
 	 */
 	public function prepareModifyUser($userId, $userName, $email, $password, $roleId)
 	{
-		//search the userId in table users of mySQL
-		$sql = "select * from users where userId ='" . $userId . "'";
-		self::debug('Querying users for userId: [' . $sql . ']');
-		$row = $this->_database->getInstance()->_db->fetchOneRow($sql);
+		//search the userId in table users of MongoDB
+		$user = $this->_usersCollection->findOne(array('userId' => $userId));
+		self::debug('Querying users for userId: [' . $userId . ']');
 
-		if (!$row)
+		if (!$user)
 		{
 			throw new NotFoundException("User not found");
 		}
 		else
 		{
 			//create the right user
-			$modifiedUserName = (($userName==null) ? $row->userName : $userName);
-			$modifiedEmail = (($email==null) ? $row->email : $email);
-			$modifiedRoleId = (($roleId==null) ? $row->roleId : $roleId);
+			$modifiedUserName = (($userName==null) ? $user['userName'] : $userName);
+			$modifiedEmail = (($email==null) ? $user['email'] : $email);
+			$modifiedRoleId = (($roleId==null) ? $user['roleId'] : $roleId);
 
 			if ($password != null)
 			{
@@ -77,7 +86,7 @@ class Controller_Rest_Helper_User extends Kimia_Profile_Database
 			}
 			else
 			{
-				$this->_model->createFullUser ($userId, $modifiedUserName, $modifiedEmail, $row->passwordHash, $row->salt, $row->iterations, $modifiedRoleId);
+				$this->_model->createFullUser ($userId, $modifiedUserName, $modifiedEmail, $user['passwordHash'], $user['salt'], $user['iterations'], $modifiedRoleId);
 			}
 		}
 	}
@@ -91,27 +100,24 @@ class Controller_Rest_Helper_User extends Kimia_Profile_Database
 		self::debug('init');
 
 		//check if this user has permissions for this service
-		Kimia_Service_Auth::getInstance()->checkServicePermissions($this->_token, "add_user");
+		UtilAuth::getInstance()->checkServicePermissions($this->_token, "add_user");
 	
-		//save user in mySQL database, including iterations and salt
-		$sql = "insert into users(userId, userName, email, passwordHash, salt, iterations, roleId) value('" .
-			   $this->_model->userId . "','" .
-			   $this->_model->userName . "','" .
-			   $this->_model->email . "','" .
-			   $this->_model->passwordHash . "','" .
-			   $this->_model->salt . "','" .
-			   $this->_model->iterations . "','" .
-			   $this->_model->roleId . "')";
-
-		self::debug('Inserting user: [' . $sql . ']');
-
-		try 
+		//save user in MongoDB database, including iterations and salt
+		self::debug('Inserting user: [' . $this->_model->userId . ']');
+		
+		try
 		{
-			$this->_database->getInstance()->_db->insert($sql);
+			$this->_usersCollection->insert(array('userId' => $this->_model->userId,
+												'userName' => $this->_model->userName,
+												'email' => $this->_model->email,
+												'passwordHash' => $this->_model->passwordHash,
+												'salt' => $this->_model->salt,
+												'iterations' => $this->_model->iterations,
+												'roleId' => $this->_model->roleId));
 		}
 		catch (Exception $e) 
 		{
-			throw new KimiaException("Error inserting in DB: " . $e->getMessage());
+			throw new TuiException("Error inserting in DB: " . $e->getMessage());
 		}
 		
 		//return reply
@@ -130,20 +136,18 @@ class Controller_Rest_Helper_User extends Kimia_Profile_Database
 		self::debug('init');
 
 		//check if this user has permissions for this service
-		Kimia_Service_Auth::getInstance()->checkServicePermissions($this->_token, "remove_user");
+		UtilAuth::getInstance()->checkServicePermissions($this->_token, "remove_user");
 
 		//remove the user
-		$sql = "delete from users where userId = '" . $this->_model->userId . "'";
-
-		self::debug('Deleting user: [' . $sql . ']');
+		self::debug('Deleting user: [' . $this->_model->userId . ']');
 
 		try 
 		{
-			$this->_database->getInstance()->_db->delete($sql);
+			$this->_usersCollection->remove(array('userId' => $this->_model->userId));
 		}
 		catch (Exception $e) 
 		{
-			throw new KimiaException("Error deleting from DB");
+			throw new TuiException("Error deleting from DB");
 		}
 
 		//return reply
@@ -162,9 +166,9 @@ class Controller_Rest_Helper_User extends Kimia_Profile_Database
 		self::debug('init');
 
 		//check if this user has permissions for this service
-		Kimia_Service_Auth::getInstance()->checkServicePermissions($this->_token, "modify_user");
+		UtilAuth::getInstance()->checkServicePermissions($this->_token, "modify_user");
 
-		//update user in mySQL database, including iterations and salt
+		//update user in mongoDB database, including iterations and salt
 		$sql = "update users set userName='" . $this->_model->userName .
 									"', email='" . $this->_model->email .
 									"', passwordHash='" . $this->_model->passwordHash .
@@ -177,11 +181,17 @@ class Controller_Rest_Helper_User extends Kimia_Profile_Database
 
 		try 
 		{
-			$this->_database->getInstance()->_db->update($sql);
+			$this->_usersCollection->update(array('userId' => $this->_model->userId),
+											array('$set' => array('userName' =>  $this->_model->userName,
+																	'email' =>  $this->_model->email,
+																	'passwordHash' =>  $this->_model->passwordHash,
+																	'salt' =>  $this->_model->salt,
+																	'iterations' =>  $this->_model->iterations,
+																	'roleId' =>  $this->_model->roleId) ));
 		}
 		catch (Exception $e) 
 		{
-			throw new KimiaException("Error updating DB: " . $e->getMessage());
+			throw new TuiException("Error updating DB: " . $e->getMessage());
 		}
 		
 		//return reply
@@ -200,12 +210,12 @@ class Controller_Rest_Helper_User extends Kimia_Profile_Database
 		self::debug('init');
 
 		//check if the user has rights to read this user
-		Kimia_Service_Auth::getInstance()->checkServicePermissions($this->_token, "read_user");
+		UtilAuth::getInstance()->checkServicePermissions($this->_token, "read_user");
 
-		if (!Kimia_Service_Auth::getInstance()->isAdmin($this->_token)) //is not an admin
+		if (!UtilAuth::getInstance()->isAdmin($this->_token)) //is not an admin
 		{
 			//check that the token is owner of the userId
-			Kimia_Service_Auth::getInstance()->checkUserIdEqualsToken($this->_model->userId, $this->_token);
+			UtilAuth::getInstance()->checkUserIdEqualsToken($this->_model->userId, $this->_token);
 		}
 
 		//return reply
@@ -224,16 +234,20 @@ class Controller_Rest_Helper_User extends Kimia_Profile_Database
 		self::debug('init');
 
 		//check if this user has permissions for this service
-		Kimia_Service_Auth::getInstance()->checkServicePermissions($this->_token, "list_users");
+		UtilAuth::getInstance()->checkServicePermissions($this->_token, "list_users");
 
 		//list all the users whose name includes $userName from the database
-		$sql = "select userId,userName,email,roleId from users where userName like '%" . $userName . 
-									"%' and email like '%" . $email .
-									"%' and roleId like '%" . $roleId. "%'";
+		$users = $this->_usersCollection->find(array('userName' => new MongoRegex('/' . $userName . '/'),
+												'email' => new MongoRegex('/' . $email . '/'),
+												'roleId' => new MongoRegex('/' . $roleId . '/')));
 
 		self::debug('Querying users for *: [' . $sql . ']');
-
-		$array = $this->_database->getInstance()->_db->fetchAll($sql);
+		
+		$array = array ();
+		foreach ($users as $user) 
+		{
+				array_push($array, $user);
+		}
 
 		return json_encode($array);
 	}

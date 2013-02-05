@@ -1,6 +1,8 @@
 <?php
 
-class Controller_Rest_Model_Token extends Kimia_Commons
+include_once '/util/Commons.php';
+
+class ModelToken extends Commons
 {
 	/**
 	 * @var
@@ -21,7 +23,7 @@ class Controller_Rest_Model_Token extends Kimia_Commons
 	public function __construct($email, $password)
 	{
 		self::debug('init');
-		$this->token = Kimia_Model_Crypto::createRandom36(KIMIA_TOKEN_LENGTH);
+		$this->token = UtilCrypto::createRandom36(KIMIA_TOKEN_LENGTH);
 		$this->email = $email;
 		$this->password = $password;
 		self::debug('Model constructed with parameters: ' . $this->token . ', ' . $this->email . '.');
