@@ -1,11 +1,11 @@
 <?php
 
-include_once 'MongoDB.php';
+include_once 'test/util/MongoDB.php';
 include_once 'test/LoginTest.php';
-include_once 'Logging.php';
+include_once 'test/util/Logging.php';
 include_once 'util/Constants.php';
 
-class TestCommons extends PHPUnit_Framework_TestCase
+class TestCommons
 {
 	private $_usersCollection;
 	private $_tokensCollection;
