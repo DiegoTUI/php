@@ -9,7 +9,7 @@ class UtilMongoDB {
     {
         static $inst = null;
         if ($inst === null) {
-            $inst = new MongoDB();
+            $inst = new self();
 			$m = new Mongo();
 			self::$db = $m->tuiinnovation;
         }
