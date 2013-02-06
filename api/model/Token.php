@@ -1,6 +1,6 @@
 <?php
 
-include_once '/util/Commons.php';
+include_once 'util/Commons.php';
 
 class ModelToken extends Commons
 {
