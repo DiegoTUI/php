@@ -1,6 +1,6 @@
 <?php
 
-class TestMongoDB {
+class TestUtilMongo {
 
 	private static $db;
 	
