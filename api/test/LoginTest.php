@@ -2,7 +2,7 @@
 
 //include_once '../controller/Token.php';
 //include_once './util/Commons.php';
-require_once 'PHPUnit/Autoload.php';
+require_once 'PHPUnit/Autoloader.php';
 
 class LoginTest extends PHPUnit_Framework_TestCase
 {

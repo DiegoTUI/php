@@ -1,5 +1,6 @@
 <?php
 
+require_once 'PHPUnit/Autoloader.php';
 require_once 'test/LoginTest.php';
 require_once 'PHPUnit.php';
 
