@@ -48,9 +48,11 @@ class HelperToken extends UtilCommons
 		{
 			throw new UnauthorizedException("Invalid email or password");
 		}
+		
+		self::debug('User exists, checking password');
 
 		//user exists, now check password
-		if (!(UtilCrypto::checkPasswordHash($this->_model->password, $row->iterations, $row->salt, $row->passwordHash))) //password incorrect
+		if (!(UtilCrypto::checkPasswordHash($this->_model->password, $user['iterations'], $user['salt'], $user['passwordHash']))) //password incorrect
 		{
 			throw new UnauthorizedException("Invalid email or password");
 		}
