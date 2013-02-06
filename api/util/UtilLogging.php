@@ -9,7 +9,7 @@
  * - first call of lwrite method will open log file implicitly
  * - message is written with the following format: [d/M/Y:H:i:s] (script name) message
  */
-class Logging {
+class UtilLogging {
 	
 	/**
 	 * Singleton instance for this class.

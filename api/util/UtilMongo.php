@@ -1,19 +1,23 @@
 <?php
 
-class UtilMongoDB {
+class UtilMongo {
 
 	private static $db;
+	
+	/**
+	 * Singleton instance for this class.
+	 */
+	private static $_instance;
 	
 	//Singleton constructor
 	public static function getInstance()
     {
-        static $inst = null;
-        if ($inst === null) {
-            $inst = new self();
+        if (self::$_instance === null) {
+            self::$_instance = new self();
 			$m = new Mongo();
 			self::$db = $m->tuiinnovation;
         }
-        return $inst;
+        return self::$_instance;
     }
 	
     //Private ctor so nobody else can instance it

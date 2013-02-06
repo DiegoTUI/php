@@ -1,8 +1,8 @@
 <?php
 
-include_once 'model/Token.php';
-include_once 'util/Crypto.php';
-include_once 'util/MongoDB.php';
+include_once 'model/ModelToken.php';
+include_once 'util/UtilCrypto.php';
+include_once 'util/UtilMongo.php';
 
 class HelperToken extends Commons
 {
@@ -28,8 +28,8 @@ class HelperToken extends Commons
 	{
 		self::debug('init');
 		$this->_model = new ModelToken($email, $password);
-		$this->_usersCollection = UtilMongoDB::getInstance()->getCollection('users');
-		$this->_tokensCollection = UtilMongoDB::getInstance()->getCollection('tokens');
+		$this->_usersCollection = UtilMongo::getInstance()->getCollection('users');
+		$this->_tokensCollection = UtilMongo::getInstance()->getCollection('tokens');
 	}
 
 	/**

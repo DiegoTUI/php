@@ -1,8 +1,8 @@
 <?php
 
-include_once 'model/User.php';
-include_once 'util/Auth.php';
-include_once 'util/MongoDB.php';
+include_once 'model/ModelUser.php';
+include_once 'util/UtilAuth.php';
+include_once 'util/UtilMongo.php';
 
 class HelperUser extends Commons
 {
@@ -30,7 +30,7 @@ class HelperUser extends Commons
 		parent::__construct();
 		$this->_token = $token;
 		$this->_model = new ModelUser();
-		$this->_usersCollection = UtilMongoDB::getInstance()->getCollection('users');
+		$this->_usersCollection = UtilMongo::getInstance()->getCollection('users');
 	}
 
 	/**

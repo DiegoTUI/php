@@ -1,8 +1,9 @@
 <?php
 
-include_once 'test/util/MongoDB.php';
-include_once 'test/util/Logging.php';
-include_once 'util/Constants.php';
+include_once 'test/util/TestUtilMongo.php';
+include_once 'test/util/TestUtilLogging.php';
+include_once 'util/UtilConstants.php';
+include_once 'controller/ControllerToken.php';
 
 class TestCommons extends PHPUnit_Framework_TestCase
 {
@@ -14,13 +15,13 @@ class TestCommons extends PHPUnit_Framework_TestCase
 	 */
 	public function __construct()
 	{
-		$this->_usersCollection = TestMongoDB::getInstance()->getCollection('users');
-		$this->_tokensCollection = TestMongoDB::getInstance()->getCollection('tokens');
+		$this->_usersCollection = TestUtilMongo::getInstance()->getCollection('users');
+		$this->_tokensCollection = TestUtilMongo::getInstance()->getCollection('tokens');
 	}
 	
 	public static function debug($message)
 	{
-		TestLogging::getInstance()->debug($message);
+		TestUtilLogging::getInstance()->debug($message);
 	}
 
 	/**
@@ -31,7 +32,7 @@ class TestCommons extends PHPUnit_Framework_TestCase
 	{
 		try
 		{
-			Token::login();
+			ControllerToken::login();
 		}
 		catch (TuiException $e) 
 		{
@@ -68,7 +69,7 @@ class TestCommons extends PHPUnit_Framework_TestCase
 	{
 		try
 		{
-			Token::login();
+			ControllerToken::login();
 			$this->fail("Invalid login did not throw any exception");
 		}
 		catch (TuiException $e) 

@@ -1,8 +1,8 @@
 <?php
 
-include_once 'helper/Token.php';
+include_once 'helper/HelperToken.php';
 
-class Token extends Commons
+class ControllerToken extends Commons
 {
 	/**
 	 * @static

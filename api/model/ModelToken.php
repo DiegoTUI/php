@@ -1,8 +1,8 @@
 <?php
 
-include_once 'util/Commons.php';
+include_once 'util/UtilCommons.php';
 
-class ModelToken extends Commons
+class ModelToken extends UtilCommons
 {
 	/**
 	 * @var

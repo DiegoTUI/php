@@ -1,7 +1,7 @@
 <?php
-require 'PHPUnit/Autoload.php';
-include_once 'controller/Token.php';
-include_once './util/TestCommons.php';
+//require 'PHPUnit/Autoload.php';
+
+include_once 'test/util/TestUtilCommons.php';
 
 class LoginTest extends PHPUnit_Framework_TestCase
 {
@@ -12,7 +12,7 @@ class LoginTest extends PHPUnit_Framework_TestCase
 	 */
 	protected function setUp()
 	{
-		$this->_common = new TestCommons();
+		$this->_common = new TestUtilCommons();
 		ob_start();
 	}
 

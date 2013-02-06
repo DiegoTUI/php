@@ -1,9 +1,9 @@
 <?php
 
-include_once 'Commons.php';
-include_once '../Util/MongoDB.php';
+include_once 'UtilCommons.php';
+include_once 'UtilMongo.php';
 
-class UtilAuth extends Commons
+class UtilAuth extends UtilCommons
 {
 	/**
 	 * Singleton instance for this class.
@@ -36,9 +36,9 @@ class UtilAuth extends Commons
 		if (self::$_instance == NULL) 
 		{
 			self::$_instance = new self();
-			self::$_usersCollection = MongoDB::getInstance()->getCollection('users');
-			self::$_rolesCollection = MongoDB::getInstance()->getCollection('roles');
-			self::$_tokensCollection = MongoDB::getInstance()->getCollection('tokens');
+			self::$_usersCollection = UtilMongo::getInstance()->getCollection('users');
+			self::$_rolesCollection = UtilMongo::getInstance()->getCollection('roles');
+			self::$_tokensCollection = UtilMongo::getInstance()->getCollection('tokens');
 		}
 
 		return self::$_instance;
