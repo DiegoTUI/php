@@ -1,7 +1,7 @@
 <?php
 //require_once 'PHPUnit/Autoload.php';
 include_once 'controller/Token.php';
-include_once 'test/util/KimiaCommon.php';
+require_once 'test/util/KimiaCommon.php';
 
 class LoginTest extends PHPUnit_Framework_TestCase
 {
