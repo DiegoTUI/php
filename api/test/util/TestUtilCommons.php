@@ -5,7 +5,7 @@ include_once 'test/util/TestUtilLogging.php';
 include_once 'util/UtilConstants.php';
 include_once 'controller/ControllerToken.php';
 
-class TestCommons extends PHPUnit_Framework_TestCase
+class TestUtilCommons extends PHPUnit_Framework_TestCase
 {
 	private $_usersCollection;
 	private $_tokensCollection;
