@@ -22,7 +22,7 @@ class LoginTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testLoginValidUser()
 	{
-		//login with "pechodelata" user
+		//login with default user
 		$_REQUEST["email"] = "dlafuente@test";
 		$_REQUEST["password"] = "dlafuente";
 		
@@ -37,14 +37,14 @@ class LoginTest extends PHPUnit_Framework_TestCase
 	 * Test login with an invalid email.
 	 * @return void
 	 */
-	/*public function testLoginInValidEmail()
+	public function testLoginInValidEmail()
 	{
-		//login with wrong "pechodelata" user
-		$_REQUEST["email"] = "pechodelata@kimmmia.es";
+		//login with wrong user
+		$_REQUEST["email"] = "dlafuente@tesst";
 		$_REQUEST["password"] = "pechodelata";
 		
 		$this->_common->invalidLogin();
-	}*/
+	}
 
 	/**
 	 * Test login with an invalid password.
