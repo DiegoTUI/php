@@ -23,7 +23,7 @@ class LoginTest extends PHPUnit_Framework_TestCase
 	public function testLoginValidUser()
 	{
 		//login with "pechodelata" user
-		$_REQUEST["email"] = "dlafuente@tuitravel-ad.com";
+		$_REQUEST["email"] = "dlafuente@test";
 		$_REQUEST["password"] = "dlafuente";
 		
 		//perform a valid login
