@@ -1,7 +1,6 @@
 <?php
 
 include_once 'test/util/MongoDB.php';
-include_once 'test/LoginTest.php';
 include_once 'test/util/Logging.php';
 include_once 'util/Constants.php';
 
