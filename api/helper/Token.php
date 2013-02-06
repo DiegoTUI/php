@@ -1,8 +1,8 @@
 <?php
 
-include_once '../Model/Token.php';
-include_once '../Util/Crypto.php';
-include_once '../Util/MongoDB.php';
+include_once 'model/Token.php';
+include_once 'util/Crypto.php';
+include_once 'util/MongoDB.php';
 
 class HelperToken extends Commons
 {

@@ -1,6 +1,6 @@
 <?php
 
-include_once '../helper/Token.php';
+include_once 'helper/Token.php';
 
 class Token
 {

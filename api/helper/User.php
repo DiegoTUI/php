@@ -1,8 +1,8 @@
 <?php
 
-include_once '../Model/User.php';
-include_once '../Util/Auth';
-include_once '../Util/MongoDB.php';
+include_once 'model/User.php';
+include_once 'util/Auth.php';
+include_once 'util/MongoDB.php';
 
 class HelperUser extends Commons
 {
