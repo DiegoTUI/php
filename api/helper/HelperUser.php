@@ -4,7 +4,7 @@ include_once 'model/ModelUser.php';
 include_once 'util/UtilAuth.php';
 include_once 'util/UtilMongo.php';
 
-class HelperUser extends Commons
+class HelperUser extends UtilCommons
 {
 	/**
 	 * @var \Controller_Rest_Model_User

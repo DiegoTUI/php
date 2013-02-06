@@ -4,7 +4,7 @@ include_once 'model/ModelToken.php';
 include_once 'util/UtilCrypto.php';
 include_once 'util/UtilMongo.php';
 
-class HelperToken extends Commons
+class HelperToken extends UtilCommons
 {
 	/**
 	 * @var \ModelToken

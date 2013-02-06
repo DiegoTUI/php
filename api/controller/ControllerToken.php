@@ -2,7 +2,7 @@
 
 include_once 'helper/HelperToken.php';
 
-class ControllerToken extends Commons
+class ControllerToken extends UtilCommons
 {
 	/**
 	 * @static
