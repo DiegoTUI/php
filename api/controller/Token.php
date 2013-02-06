@@ -2,7 +2,7 @@
 
 include_once 'helper/Token.php';
 
-class Token
+class Token extends Commons
 {
 	/**
 	 * @static
