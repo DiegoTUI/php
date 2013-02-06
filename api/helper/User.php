@@ -30,7 +30,7 @@ class HelperUser extends Commons
 		parent::__construct();
 		$this->_token = $token;
 		$this->_model = new ModelUser();
-		$this->_usersCollection = MongoDB::getInstance()->getCollection('users');
+		$this->_usersCollection = UtilMongoDB::getInstance()->getCollection('users');
 	}
 
 	/**

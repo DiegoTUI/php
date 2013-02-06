@@ -29,8 +29,8 @@ class HelperToken extends Commons
 		self::debug('init');
 		parent::__construct();
 		$this->_model = new ModelToken($email, $password);
-		$this->_usersCollection = MongoDB::getInstance()->getCollection('users');
-		$this->_tokensCollection = MongoDB::getInstance()->getCollection('tokens');
+		$this->_usersCollection = UtilMongoDB::getInstance()->getCollection('users');
+		$this->_tokensCollection = UtilMongoDB::getInstance()->getCollection('tokens');
 	}
 
 	/**
