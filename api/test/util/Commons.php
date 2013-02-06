@@ -1,9 +1,9 @@
 <?php
 
 include_once 'MongoDB.php';
-include_once '../LoginTest.php';
+include_once 'test/LoginTest.php';
 include_once 'Logging.php';
-include_once '../util/Constants.php';
+include_once 'util/Constants.php';
 
 class TestCommons extends PHPUnit_Framework_TestCase
 {
