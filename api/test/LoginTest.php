@@ -1,5 +1,5 @@
 <?php
-require_once 'PHPUnit/Autoload.php';
+//require_once 'PHPUnit/Autoload.php';
 include_once 'controller/Token.php';
 include_once 'test/util/Commons.php';
 
