@@ -27,7 +27,7 @@ class LoginTest extends PHPUnit_Framework_TestCase
 		$_REQUEST["password"] = "dlafuente";
 		
 		//perform a valid login
-		$token = $this->_common->validLogin();
+		//$token = $this->_common->validLogin();
 
 		//clean the buffer for next test
 		ob_clean();
