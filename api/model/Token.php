@@ -27,7 +27,7 @@ class ModelToken extends Commons
 	public function __construct($email, $password)
 	{
 		self::debug('init');
-		$this->token = UtilCrypto::createRandom36(KIMIA_TOKEN_LENGTH);
+		$this->token = UtilCrypto::createRandom36(TUI_TOKEN_LENGTH);
 		$this->email = $email;
 		$this->password = $password;
 		$this->created = new MongoDate();
