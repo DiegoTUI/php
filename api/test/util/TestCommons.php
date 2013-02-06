@@ -4,7 +4,7 @@ include_once 'test/util/MongoDB.php';
 include_once 'test/util/Logging.php';
 include_once 'util/Constants.php';
 
-class TestCommons extends TestMongoDB
+class TestCommons extends HolyCrapdelamorhermoso
 {
 	private $_usersCollection;
 	private $_tokensCollection;
