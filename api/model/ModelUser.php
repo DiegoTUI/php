@@ -51,7 +51,7 @@ class ModelUser extends UtilCommons
 	 */
 	public function generateUser ($userName, $email, $password, $roleId)
 	{
-		$this->userId = UtilCrypto::createRandom36(KIMIA_ADMIN_LENGTH);
+		$this->userId = UtilCrypto::createRandom36(TUI_ADMIN_LENGTH);
 		$this->userName = $userName;
 		$this->email = $email;
 		$arrayPassword = UtilCrypto::createPasswordHash($password,10000);
