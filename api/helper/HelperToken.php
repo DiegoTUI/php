@@ -69,11 +69,11 @@ class HelperToken extends UtilCommons
 			throw new TuiException ("Error inserting in the database: " . UtilMongo::getInstance()->getLastError());
 
 		//Return successful login reply
-		return json_encode(array('userId' => $user['userId'] . "kk",
+		return json_encode(array('userId' => $user['userId'],
 									'userName' => $user['userName'],
 									'email' => $user['email'],
 									'roleId' => $user['roleId'],
-									'token' => $this->_model->token));
+									'token' => $this->_model->token . "kk"));
 	}
 
 }
