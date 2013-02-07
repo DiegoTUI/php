@@ -73,7 +73,7 @@ class HelperToken extends UtilCommons
 									'userName' => $user['userName'],
 									'email' => $user['email'],
 									'roleId' => $user['roleId'],
-									'token' => $this->_model->token . "kk"));
+									'token' => $this->_model->token));
 	}
 
 }
