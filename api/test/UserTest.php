@@ -344,6 +344,8 @@ class UserTest extends PHPUnit_Framework_TestCase
 
 		$_REQUEST["userName"] = null;
 		$_REQUEST["email"] = null;
+		
+		TestUtilLogging::getInstance()->debug('about to list users:\nuserName: ' . $_REQUEST["userName"] . "\nemail: " . $_REQUEST["email"] . "\nroleId" . $_REQUEST["roleId"]);
 
 		//now try with an admin token
 		ControllerUser::listUsers(TUI_TEST_ADMIN_TOKEN);
