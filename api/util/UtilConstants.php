@@ -8,5 +8,8 @@ define("TUI_COOKIE_EXPIRATION", 365 * 24 * 3600);
 define("TUI_COOKIE_PATH", "/");
 define("TUI_COOKIE_DOMAIN", "tuitravel-ad.es");
 
+define("TUI_TEST_ADMIN_TOKEN", 'admintoken11');
+define("TUI_TEST_USER_TOKEN", 'usertoken11');
+
 ?>
 

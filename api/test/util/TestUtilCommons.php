@@ -4,6 +4,7 @@ include_once 'test/util/TestUtilMongo.php';
 include_once 'test/util/TestUtilLogging.php';
 include_once 'util/UtilConstants.php';
 include_once 'controller/ControllerToken.php';
+include_once 'controller/ControllerUser.php';
 
 class TestUtilCommons extends PHPUnit_Framework_TestCase
 {
@@ -85,9 +86,9 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 	 * tries to add a user with the admin token and returns the output of the operation
 	 * @return jsonarray
 	 */
-	/*public function addUserWithAdminToken()
+	public function addUserWithAdminToken()
 	{
-		Controller_Rest_User::addUser(KIMIA_TEST_ADMIN_TOKEN);
+		ControllerUser::addUser(TUI_TEST_ADMIN_TOKEN);
 		$stringOutput = ob_get_contents();
 		self::debug('stringOutput: ' . $stringOutput);
 		$stringArray = json_decode($stringOutput, true);
@@ -97,31 +98,31 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 
 		//check that the userId is valid
 		$userId = $stringArray["userId"];
-		$this->assertTrue(strlen($userId) == KIMIA_ADMIN_LENGTH, "invalid userId length. It is " . strlen($userId) . " and should be " . KIMIA_ADMIN_LENGTH);
+		$this->assertTrue(strlen($userId) == TUI_ADMIN_LENGTH, "invalid userId length. It is " . strlen($userId) . " and should be " . TUI_ADMIN_LENGTH);
 
 		//check that the user was written in the db
-		$sql = "select * from users where userId ='" . $userId . "'";
-		self::debug('Querying users for userId: [' . $sql . ']');
-		$row = $this->_database->selectOne($sql);
-		$this->assertTrue($row != NULL, "user not saved in the database");
+		$user = $this->_usersCollection->findOne(array("userId" => $userId));
+		self::debug('Querying users for userId: [' . $userId . ']');
+		$this->assertTrue($user != NULL, "user not saved in the database");
 		
 		//check that the email in the db is correct
-		$this->assertTrue(strcmp($_REQUEST["email"],$row->email) == 0, "incorrect e-mail stored in database");	
-
+		//$this->assertTrue(strcmp($_REQUEST["email"],$user['email']) == 0, "incorrect e-mail stored in database");	
+		$this->assertEquals($_REQUEST["email"], $user['email']);
+		
 		//clean the buffer for next test
 		ob_clean();
-	}*/
+	}
 
 	/**
 	 * tries to remove a user with the admin token and returns the output of the operation
 	 * @return jsonarray
 	 */
-	/*public function removeUserWithAdminToken()
+	public function removeUserWithAdminToken()
 	{
 		//remove user with admin token
 		try 
 		{
-			Controller_Rest_User::removeUser(KIMIA_TEST_ADMIN_TOKEN);
+			ControllerUser::removeUser(TUI_TEST_ADMIN_TOKEN);
 		}
 		catch (KimiaException $e) 
 		{
@@ -138,34 +139,34 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 
 		//check that the userId is valid
 		$userId = $stringArray["userId"];
-		$this->assertTrue(strlen($userId) == KIMIA_ADMIN_LENGTH, "invalid userId length. It is " . strlen($userId) . " and should be " . KIMIA_ADMIN_LENGTH);
+		$this->assertTrue(strlen($userId) == TUI_ADMIN_LENGTH, "invalid userId length. It is " . strlen($userId) . " and should be " . TUI_ADMIN_LENGTH);
 
 		//check that the user was deleted from the db
-		$sql = "select * from users where userId ='" . $userId . "'";
-		self::debug('Querying users for userId: [' . $sql . ']');
-		$row = $this->_database->selectOne($sql);
-		$this->assertTrue($row == NULL, "user not properly deleted from the database");
+		$user = $this->_usersCollection->findOne(array("userId" => $userId));
+		self::debug('Querying users for userId: [' . $userId . ']');
+		$this->assertTrue($user == NULL, "user not properly deleted from the database");
 		
 		//clean the buffer for next test
 		ob_clean();
-	}*/
+	}
 
 	/**
 	 * returns the current userId for the POST user
 	 * @return userID, null if it does not exist in the db
 	 */
-	/*public function getUserIdForCurrentUser()
+	public function getUserIdForCurrentUser()
 	{
 		$userId = null;
+		
+		$user = $this->_usersCollection->findOne(array("email" => $_REQUEST["email"]));
 
-		$sql = "select * from users where email ='" . $_REQUEST["email"] . "'";
-		self::debug('Querying users for email: [' . $sql . ']');
-		$row = $this->_database->selectOne($sql);
-		if ($row)
-			$userId = $row->userId;	
+		self::debug('Querying users for email: [' . $_REQUEST["email"] . ']');
+
+		if ($user)
+			$userId = $user['userId'];	
 
 		return $userId;
-	}*/
+	}
 
 	/**
 	 * creates test user and inserts it in the POST global
