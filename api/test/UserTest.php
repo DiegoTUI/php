@@ -224,7 +224,7 @@ class UserTest extends PHPUnit_Framework_TestCase
 
 		//check that the user was written in the db
 		$user = $this->_usersCollection->findOne(array("userId" => $_REQUEST["userId"]));
-		TestUtilLogging::debug('Querying users for userId: [' . $_REQUEST["userId"] . ']');
+		TestUtilLogging::getInstance()->debug('Querying users for userId: [' . $_REQUEST["userId"] . ']');
 		$this->assertTrue($user != NULL, "user not saved in the database");
 	
 		//check that the email in the db is correct
@@ -286,7 +286,7 @@ class UserTest extends PHPUnit_Framework_TestCase
 		}
 
 		$stringOutput = ob_get_contents();
-		TestUtilLogging::debug('stringOutput: ' . $stringOutput);
+		TestUtilLogging::getInstance()->debug('stringOutput: ' . $stringOutput);
 		$stringArray = json_decode($stringOutput, true);
 
 		//check that the email returned is correct
@@ -306,7 +306,7 @@ class UserTest extends PHPUnit_Framework_TestCase
 		}
 
 		$stringOutput = ob_get_contents();
-		TestUtilLogging::debug('stringOutput: ' . $stringOutput);
+		TestUtilLogging::getInstance()->debug('stringOutput: ' . $stringOutput);
 		$stringArray = json_decode($stringOutput, true);
 
 		//check that the email returned is correct
@@ -349,7 +349,7 @@ class UserTest extends PHPUnit_Framework_TestCase
 		ControllerUser::listUsers(TUI_TEST_ADMIN_TOKEN);
 
 		$stringOutput = ob_get_contents();
-		TestUtilLogging::debug('stringOutput: ' . $stringOutput);
+		TestUtilLogging::getInstance()->debug('stringOutput: ' . $stringOutput);
 		$stringArray = json_decode($stringOutput, true);
 
 		//check that it returned a proper list
@@ -365,7 +365,7 @@ class UserTest extends PHPUnit_Framework_TestCase
 		ControllerUser::listUsers(TUI_TEST_ADMIN_TOKEN);
 
 		$stringOutput = ob_get_contents();
-		TestUtilLogging::debug('stringOutput: ' . $stringOutput);
+		TestUtilLogging::getInstance()->debug('stringOutput: ' . $stringOutput);
 		$stringArray = json_decode($stringOutput, true);
 
 		//check that it returned a proper list. I assume that only one user is listed: pechodelata
