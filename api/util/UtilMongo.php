@@ -32,5 +32,12 @@ class UtilMongo {
 		return self::$db->$collection;
 	}
 	
+	//Return last error
+	public function getLastError()
+	{
+		$arrayError = self::$db->lastError();
+		return $arrayError['err'];
+	}
+	
 }
 ?>

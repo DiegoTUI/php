@@ -104,22 +104,18 @@ class HelperUser extends UtilCommons
 		//save user in MongoDB database, including iterations and salt
 		self::debug('Inserting user: [' . $this->_model->userId . ']');
 		
-		try
-		{
-			$this->_usersCollection->insert(array('userId' => $this->_model->userId,
-												'userName' => $this->_model->userName,
-												'email' => $this->_model->email,
-												'passwordHash' => $this->_model->passwordHash,
-												'salt' => $this->_model->salt,
-												'iterations' => $this->_model->iterations,
-												'roleId' => $this->_model->roleId,
-												'created' => $this->_model->created,
-												'lastModified' => $this->_model->created));
-		}
-		catch (Exception $e) 
-		{
-			throw new TuiException("Error inserting in DB: " . $e->getMessage());
-		}
+		$this->_usersCollection->insert(array('userId' => $this->_model->userId,
+											'userName' => $this->_model->userName,
+											'email' => $this->_model->email,
+											'passwordHash' => $this->_model->passwordHash,
+											'salt' => $this->_model->salt,
+											'iterations' => $this->_model->iterations,
+											'roleId' => $this->_model->roleId,
+											'created' => $this->_model->created,
+											'lastModified' => $this->_model->created));
+		//check if there was any error
+		if (UtilMongo::getInstance()->getLastError())
+			throw new TuiException ("Error inserting in the database: " . UtilMongo::getInstance()->getLastError());
 		
 		//return reply
 		return json_encode(array('userId' => $this->_model->userId,
@@ -141,15 +137,8 @@ class HelperUser extends UtilCommons
 
 		//remove the user
 		self::debug('Deleting user: [' . $this->_model->userId . ']');
-
-		try 
-		{
-			$this->_usersCollection->remove(array('userId' => $this->_model->userId));
-		}
-		catch (Exception $e) 
-		{
-			throw new TuiException("Error deleting from DB");
-		}
+		
+		$this->_usersCollection->remove(array('userId' => $this->_model->userId));
 
 		//return reply
 		return json_encode(array('userId' => $this->_model->userId,
@@ -170,21 +159,20 @@ class HelperUser extends UtilCommons
 		UtilAuth::getInstance()->checkServicePermissions($this->_token, "modify_user");
 
 		//update user in mongoDB database, including iterations and salt
-		try 
-		{
-			$this->_usersCollection->update(array('userId' => $this->_model->userId),
-											array('$set' => array('userName' =>  $this->_model->userName,
-																	'email' =>  $this->_model->email,
-																	'passwordHash' =>  $this->_model->passwordHash,
-																	'salt' =>  $this->_model->salt,
-																	'iterations' =>  $this->_model->iterations,
-																	'roleId' =>  $this->_model->roleId,
-																	'lastModified' => $this->_model->created) ));
-		}
-		catch (Exception $e) 
-		{
-			throw new TuiException("Error updating DB: " . $e->getMessage());
-		}
+		
+		$this->_usersCollection->update(array('userId' => $this->_model->userId),
+										array('$set' => array('userName' =>  $this->_model->userName,
+																'email' =>  $this->_model->email,
+																'passwordHash' =>  $this->_model->passwordHash,
+																'salt' =>  $this->_model->salt,
+																'iterations' =>  $this->_model->iterations,
+																'roleId' =>  $this->_model->roleId,
+																'lastModified' => $this->_model->created) ));
+																
+		//check if there was any error
+		if (UtilMongo::getInstance()->getLastError())
+			throw new TuiException ("Error inserting in the database: " . UtilMongo::getInstance()->getLastError());
+		
 		
 		//return reply
 		return json_encode(array('userId' => $this->_model->userId,
@@ -233,7 +221,7 @@ class HelperUser extends UtilCommons
 												'email' => new MongoRegex('/' . $email . '/'),
 												'roleId' => new MongoRegex('/' . $roleId . '/')));
 
-		self::debug('Querying users for *: [' . $sql . ']');
+		self::debug('Querying users for *');
 		
 		$array = array ();
 		foreach ($users as $user) 
