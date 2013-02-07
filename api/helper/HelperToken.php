@@ -59,16 +59,14 @@ class HelperToken extends UtilCommons
 
 		//user exists and password correct. Save token in DB
 		self::debug('Inserting token: [' . $this->_model->token . ']');
-		try 
-		{
-			$this->_tokensCollection->insert(array("token" => $this->_model->token,
-													"userId" => $user['userId'],
-													"created" => $this->_model->created));
-		}
-		catch (Exception $e) 
-		{
-    		throw new TuiException("Error inserting in DB: " . $e->getMessage());
-		}
+		
+		$this->_tokensCollection->insert(array("token" => $this->_model->token,
+												"userId" => $user['userId'],
+												"created" => $this->_model->created));
+		
+		//check if there was any error
+		if (UtilMongo::getInstance()->getLastError())
+			throw new TuiException ("Error inserting in the database: " . UtilMongo::getInstance()->getLastError());
 
 		//Return successful login reply
 		return json_encode(array('userId' => $user['userId'],
