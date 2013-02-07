@@ -52,7 +52,7 @@ class ControllerUser extends UtilCommons
 		$roleId = (isset($_REQUEST["roleId"]) ? $_REQUEST["roleId"] : null);
 
 		//build helper and trigger function
-		$helper = new Controller_Rest_Helper_User($token);
+		$helper = new HelperUser($token);
 		$helper->prepareModifyUser($_REQUEST["userId"], $userName, $email, $password, $roleId);
 		echo $helper->modifyUser();
 		self::debug('done');
@@ -62,7 +62,7 @@ class ControllerUser extends UtilCommons
 	{
 		self::debug('init');
 
-		$helper = new Controller_Rest_Helper_User($token);
+		$helper = new HelperUser($token);
 		UtilAuth::getInstance()->checkRequestKey("userId");
 		$userId = $_REQUEST["userId"];
 		$helper->prepareRemoveReadUser($userId);   //there is no user to read in the database
@@ -74,7 +74,7 @@ class ControllerUser extends UtilCommons
 	{
 		self::debug('init');
 		
-		$helper = new Controller_Rest_Helper_User($token);
+		$helper = new HelperUser($token);
 		$userName = (isset($_REQUEST["userName"]) ? $_REQUEST["userName"] : "");
 		$email = (isset($_REQUEST["email"]) ? $_REQUEST["email"] : "");
 		$roleId = (isset($_REQUEST["roleId"]) ? $_REQUEST["roleId"] : "");
