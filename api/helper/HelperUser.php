@@ -27,7 +27,6 @@ class HelperUser extends UtilCommons
 	public function __construct($token)
 	{
 		self::debug('init');
-		parent::__construct();
 		$this->_token = $token;
 		$this->_model = new ModelUser();
 		$this->_usersCollection = UtilMongo::getInstance()->getCollection('users');
