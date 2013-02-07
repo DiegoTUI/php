@@ -1,6 +1,6 @@
 <?php
 
-include_once 'helper/HelperUser';
+include_once 'helper/HelperUser.php';
 
 class ControllerUser extends UtilCommons
 {
