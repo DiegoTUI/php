@@ -24,7 +24,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testRequest()
 	{
-		var $sizeRequest = count($_REQUEST);
+		$sizeRequest = count($_REQUEST);
 		//Create the request
 		$request = new ModelRequest($_REQUEST);
 		//Check that it was created OK
