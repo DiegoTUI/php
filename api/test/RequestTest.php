@@ -31,7 +31,6 @@ class RequestTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals(count($request->variables),$sizeRequest);
 		//Look for a non existing key
 		$key = "nonExistingKey";
-		$this->assertEquals($request->read($key), null);
 		$this->assertEquals($request->read($key, false), null);
 		$this->assertEquals($request->peek($key), null);
 		//Look for an existing key
@@ -41,7 +40,6 @@ class RequestTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($result,$_REQUEST[$key]);
 		$this->assertEquals(count($request->variables),$sizeRequest-1);
 		//Look for the same key again
-		$this->assertEquals($request->read($key), null);
 		$this->assertEquals($request->read($key, false), null);
 		$this->assertEquals($request->peek($key), null);
 		//peek for an existing key
@@ -59,7 +57,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
 		$key = "newKey";
 		$value = "newValue";
 		$request->write($key, $value);
-		$result = $request->read($key, false);
+		$result = $request->read($key);
 		$this->assertTrue($result != null, "did not return a correct result when reading a valid key");
 		$this->assertEquals($result, $value);
 		$this->assertEquals(count($request->variables),$sizeRequest-2);
