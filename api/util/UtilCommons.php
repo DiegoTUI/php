@@ -13,4 +13,6 @@ class UtilCommons
 	}
 }
 
+$ERROR_MESSAGE = '';
+
 ?>
