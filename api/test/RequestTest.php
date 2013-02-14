@@ -62,7 +62,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
 		$result = $request->read($key, false);
 		$this->assertTrue($result != null, "did not return a correct result when reading a valid key");
 		$this->assertEquals($result, $value);
-		$this->assertEquals(count($request->variables),$sizeRequest-2)
+		$this->assertEquals(count($request->variables),$sizeRequest-2);
 	}
 	
 	/**
