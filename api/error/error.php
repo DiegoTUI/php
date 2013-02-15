@@ -12,9 +12,6 @@ function send_page($header, $page, $message = null)
 {
 	global $ERROR_MESSAGE;
 	global $CONFIG;
-	var_dump($CONFIG);
-	$result = ob_get_clean();
-	UtilLogging::getInstance()->debug("Value of CONFIG[test]: " . $result);
 	if ($CONFIG["test"])
 		throw new TuiException ("page error");
 	

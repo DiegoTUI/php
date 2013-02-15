@@ -17,4 +17,3 @@ $CONFIG = array(
 	'test' => false,
 );
 
-UtilLogging::getInstance()->debug("Redefined CONFIG to: " . $CONFIG["test"]);
