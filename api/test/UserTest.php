@@ -3,8 +3,6 @@
 include_once 'test/util/TestUtilCommons.php';
 include_once 'util/UtilConfig.php';
 
-global $CONFIG;
-
 class UserTest extends PHPUnit_Framework_TestCase
 {
 
@@ -19,6 +17,7 @@ class UserTest extends PHPUnit_Framework_TestCase
 		$this->_common = new TestUtilCommons();
 		$this->_common->createTestUser();
 		$this->_usersCollection = TestUtilMongo::getInstance()->getCollection('users');
+		global $CONFIG;
 		$CONFIG['test'] = true;
 		
 		ob_start();
@@ -387,6 +386,7 @@ class UserTest extends PHPUnit_Framework_TestCase
 	 */
 	protected function tearDown()
 	{
+		global $CONFIG;
 		$CONFIG['test'] = false;
 		ob_end_clean();
 	}

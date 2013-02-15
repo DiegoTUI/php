@@ -3,8 +3,6 @@
 include_once 'test/util/TestUtilCommons.php';
 include_once 'util/UtilConfig.php';
 
-global $CONFIG;
-
 class LoginTest extends PHPUnit_Framework_TestCase
 {
 	protected $_common;
@@ -15,6 +13,7 @@ class LoginTest extends PHPUnit_Framework_TestCase
 	protected function setUp()
 	{
 		$this->_common = new TestUtilCommons();
+		global $CONFIG;
 		$CONFIG['test'] = true;
 		ob_start();
 	}
@@ -67,6 +66,7 @@ class LoginTest extends PHPUnit_Framework_TestCase
 	 */
 	protected function tearDown()
 	{
+		global $CONFIG;
 		$CONFIG['test'] = false;
 		ob_end_clean();
 	}
