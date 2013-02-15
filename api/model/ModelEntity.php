@@ -35,17 +35,65 @@ class ModelEntity
 	}
 	
 	/**
-	 * Fill all the attributes with the contents of $REQUEST
+	 * Fill all the writable attributes with the contents of $REQUEST
 	 */
 	 function read_set_all()
 	 {
 		foreach($this->attributes as $attribute)
 		{
-			$attribute->read_set()
+			if ($attribute->writeable)
+				$attribute->read_set();
 		}
 	 }
+	 
+	 /**
+	 * Fill all the writable attributes with the contents of $xml
+	 */
+	 function read_set_all($xml)
+	 {
+		//TODO: parse xml and fill in the attributes
+	 }
 	
-
+	/**
+	 * Get an ATLAS compliant XML representation of the entity
+	 */
+	 function get_xml()
+	 {
+		global $CONFIG;
+		$xml = $CONFIG['xml_headers'][$this->name];		
+		//TODO: produce an xml based on the entity's attributes
+		$xml_json = $this->get_xml_json();
+		
+		$xml = $xml . $CONFIG['xml_footers'][$this->name];
+		
+		return $xml;
+	 }
+	 
+	 /**
+	 * Produce an intermmediata xml_json structure
+	 */
+	 function get_xml_json()
+	 {
+		$result = array();
+		foreach($this->attributes as $attribute)
+		{
+			process_attrbute ($attribute, $result);
+		}
+	 }
+	 
+	 function process_attribute ($attribute, &$result)
+	 {
+		$piece = $result;
+		for ($i=0 ; $i<count($attribute->path); $i++)
+		{
+			$node_name = $attribute->path[i];
+			if (!isset($piece[$node_name]))
+				$piece[$node_name] = array();
+			$piece = $piece[$node_name];
+		}
+		$piece[$attribute->name] = $attribute->value;
+	 }
+	
 	/**
 	 * Get the attribute with the given id.
 	 */

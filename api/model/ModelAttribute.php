@@ -31,11 +31,11 @@ class Attribute
 	 * Construct a new attribute.
 	 * The path is a dot-separated list of objects: position.latitude.
 	 */
-	function __construct($name, $type = "element", $dot_path = null)
+	function __construct($name, $dot_path = null, $type = null, $value = null)
 	{
 		$this->id = $name;
 		$this->name = $name;
-		$this->path = array($name);
+		$this->path = array();
 		if ($dot_path != null)
 		{
 			$this->id = str_replace(".", "_", $dot_path) . '_' . $name;
@@ -43,7 +43,19 @@ class Attribute
 		}
 		
 		$this->type = $type;
-		$this->value = null;
+		if ($type == null)	//"Autocalculate" the type based on the name
+		{
+			$this->type = 'attribute';
+			if (startsWithUpper($name))
+				$this->type = 'element';
+		}
+		if (equals($this->type, "attribute"))
+			array_push($this->path, $this->type);
+		
+		if ($value != null)
+			$this->writeable = false;
+			
+		$this->value = $value;
 	}
 
 	/**
@@ -74,9 +86,9 @@ class Attribute
  */
 class Mandatory extends Attribute
 {
-	function __construct($name, $type = "element", $dot_path = null)
+	function __construct($name, $dot_path = null, $type = null, $value = null)
 	{
-		parent::__construct($name, $type, $dot_path);
+		parent::__construct($name, $dot_path, $type, $value);
 		$this->mandatory = true;
 		$this->writeable = true;
 		$this->visible = true;
@@ -88,9 +100,9 @@ class Mandatory extends Attribute
  */
 class Optional extends Attribute
 {
-	function __construct($name, $type = "element", $dot_path = null)
+	function __construct($name, $dot_path = null, $type = null, $value = null)
 	{
-		parent::__construct($name, $type, $dot_path);
+		parent::__construct($name, $dot_path, $type, $value);
 		$this->writeable = true;
 		$this->visible = true;
 	}
@@ -101,9 +113,9 @@ class Optional extends Attribute
  */
 class Visible extends Attribute
 {
-	function __construct($name, $type = "element", $dot_path = null)
+	function __construct($name, $dot_path = null, $type = null, $value = null)
 	{
-		parent::__construct($name, $type, $dot_path);
+		parent::__construct($name, $dot_path, $type, $value);
 		$this->visible = true;
 	}
 }

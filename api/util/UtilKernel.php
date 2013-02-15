@@ -110,6 +110,15 @@ function substringUpTo($haystack, $needle)
 }
 
 /**
+ * Checks if a string starts with Upper Case.
+ */
+function startsWithUpper($string)
+{
+	$chr = mb_substr ($string, 0, 1, "UTF-8");
+    return mb_strtolower($chr, "UTF-8") != $chr;
+}
+
+/**
  * Return the $haystack substring that starts at the $needle. If no $needle is found return null.
  */
 function substringFrom($haystack, $needle)
