@@ -4,6 +4,8 @@
  * (C) 2013 Tui Innovation.
  */
 
+include_once 'util/UtilLogging.php';
+ 
 const VERSION = '0.0.9';
 
 /**
@@ -14,3 +16,5 @@ $CONFIG = array(
 	// Tests will set this to true on setUp and to false again in TearDown
 	'test' => true,
 );
+
+UtilLogging::getInstance()->debug("Redefined CONFIG to: " . var_dump($CONFIG));
