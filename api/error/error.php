@@ -1,7 +1,7 @@
 <?php
 
-include_once 'util/UtilConfig';
-include_once 'util/UtilException';
+include_once 'util/UtilConfig.php';
+include_once 'util/UtilExceptions.php';
 
 $ERROR_MESSAGE = '';
 
