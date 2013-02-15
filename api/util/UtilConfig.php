@@ -11,10 +11,10 @@ const VERSION = '0.0.9';
 /**
  * Configuration object.
  */
-$CONFIG = array(
+$CONFIGTUI = array(
 	// Used to know if we are testing or not
 	// Tests will set this to true on setUp and to false again in TearDown
 	'test' => true,
 );
 
-UtilLogging::getInstance()->debug("Redefined CONFIG to: " . $CONFIG["test"]);
+UtilLogging::getInstance()->debug("Redefined CONFIG to: " . $CONFIGTUI["test"]);

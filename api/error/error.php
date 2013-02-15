@@ -6,15 +6,15 @@ include_once 'util/UtilLogging.php';
 
 $ERROR_MESSAGE = '';
 
-global $CONFIG;
+global $CONFIGTUI;
 
 function send_page($header, $page, $message = null)
 {
 	global $ERROR_MESSAGE;
 	UtilLogging::getInstance()->debug("Value of true: " . true);
 	UtilLogging::getInstance()->debug("Value of false: " . false);
-	UtilLogging::getInstance()->debug("Value of CONFIG[test]: " . $CONFIG["test"]);
-	if ($CONFIG["test"])
+	UtilLogging::getInstance()->debug("Value of CONFIG[test]: " . $CONFIGTUI["test"]);
+	if ($CONFIGTUI["test"])
 		throw new TuiException ("page error");
 	else
 	{
