@@ -6,11 +6,12 @@ include_once 'util/UtilLogging.php';
 
 $ERROR_MESSAGE = '';
 
-global $CONFIGTUI;
+
 
 function send_page($header, $page, $message = null)
 {
 	global $ERROR_MESSAGE;
+	global $CONFIGTUI;
 	var_dump($CONFIGTUI);
 	$result = ob_get_clean();
 	UtilLogging::getInstance()->debug("Value of CONFIG[test]: " . $result);
