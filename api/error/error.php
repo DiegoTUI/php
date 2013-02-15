@@ -2,7 +2,7 @@
 
 include_once 'util/UtilConfig.php';
 include_once 'util/UtilExceptions.php';
-include_once 'util/UtilLogging.php'
+include_once 'util/UtilLogging.php';
 
 $ERROR_MESSAGE = '';
 
