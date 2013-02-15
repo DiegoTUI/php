@@ -23,7 +23,7 @@ class ModelRequest
 	 * mandatory. Remove the key from the request after reading it.
 	 * Returns the variable read, or $default if not present.
 	 */
-	function read($key, $mandatory = true, $default = null)
+	function read($key, $mandatory = false, $default = null)
 	{
 		if (!$this->has($key, $mandatory))
 		{

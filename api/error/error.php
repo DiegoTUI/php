@@ -1,10 +1,16 @@
 <?php
 
+include_once 'util/UtilConfig';
+include_once 'util/UtilException';
+
 $ERROR_MESSAGE = '';
 
 function send_page($header, $page, $message = null)
 {
+	global $CONFIG;
 	global $ERROR_MESSAGE;
+	if ($CONFIG["test"])
+		throw new TuiException ("page error");
 	header($header);
 	$ERROR_MESSAGE = $message;
 	include_once('error/' . $page);

@@ -1,7 +1,9 @@
 <?php
-//require 'PHPUnit/Autoload.php';
 
 include_once 'test/util/TestUtilCommons.php';
+include_once 'util/UtilConfig.php';
+
+global $CONFIG;
 
 class LoginTest extends PHPUnit_Framework_TestCase
 {
@@ -13,6 +15,7 @@ class LoginTest extends PHPUnit_Framework_TestCase
 	protected function setUp()
 	{
 		$this->_common = new TestUtilCommons();
+		$CONFIG['test'] = true;
 		ob_start();
 	}
 
@@ -64,6 +67,7 @@ class LoginTest extends PHPUnit_Framework_TestCase
 	 */
 	protected function tearDown()
 	{
+		$CONFIG['test'] = false;
 		ob_end_clean();
 	}
 }

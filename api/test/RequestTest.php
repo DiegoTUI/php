@@ -2,6 +2,9 @@
 
 include_once 'model/ModelRequest.php';
 include_once 'test/util/TestUtilCommons.php';
+include_once 'util/UtilConfig.php';
+
+global $CONFIG;
 
 class RequestTest extends PHPUnit_Framework_TestCase
 {
@@ -15,6 +18,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
 	{
 		$this->_common = new TestUtilCommons();
 		$this->_common->createTestUser();
+		$CONFIG['test'] = true;
 		ob_start();
 	}
 
@@ -33,6 +37,15 @@ class RequestTest extends PHPUnit_Framework_TestCase
 		$key = "nonExistingKey";
 		$this->assertEquals($request->read($key, false), null);
 		$this->assertEquals($request->peek($key), null);
+		try
+		{
+			$request->read($key, true);
+			$this->fail('did not throw an exception when reading a mandatory non-existing key');
+		}
+		catch (TuiException e)
+		{
+		//OK
+		}
 		//Look for an existing key
 		$key = "password";
 		$result = $request->read($key);
@@ -68,6 +81,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
 	 */
 	protected function tearDown()
 	{
+		$CONFIG['test'] = false;
 		ob_end_clean();
 	}
 }
