@@ -17,12 +17,11 @@ function send_page($header, $page, $message = null)
 	UtilLogging::getInstance()->debug("Value of CONFIG[test]: " . $result);
 	if ($CONFIG["test"])
 		throw new TuiException ("page error");
-	else
-	{
-		header($header);
-		$ERROR_MESSAGE = $message;
-		include_once('error/' . $page);
-	}
+	
+	header($header);
+	$ERROR_MESSAGE = $message;
+	include_once('error/' . $page);
+	
 	exit();
 }
 
