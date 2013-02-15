@@ -5,8 +5,6 @@ include_once 'test/util/TestUtilCommons.php';
 include_once 'util/UtilConfig.php';
 include_once 'util/UtilExceptions.php';
 
-global $CONFIG;
-
 class RequestTest extends PHPUnit_Framework_TestCase
 {
 
@@ -19,6 +17,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
 	{
 		$this->_common = new TestUtilCommons();
 		$this->_common->createTestUser();
+		global $CONFIG;
 		$CONFIG['test'] = true;
 		ob_start();
 	}

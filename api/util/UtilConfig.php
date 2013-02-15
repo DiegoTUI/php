@@ -11,7 +11,7 @@ const VERSION = '0.0.9';
 /**
  * Configuration object.
  */
-$CONFIGT = array(
+$CONFIG = array(
 	// Used to know if we are testing or not
 	// Tests will set this to true on setUp and to false again in TearDown
 	'test' => true,
