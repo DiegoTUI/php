@@ -3,6 +3,7 @@
 include_once 'model/ModelRequest.php';
 include_once 'test/util/TestUtilCommons.php';
 include_once 'util/UtilConfig.php';
+include_once 'util/UtilExceptions.php';
 
 global $CONFIG;
 
