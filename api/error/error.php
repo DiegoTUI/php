@@ -11,9 +11,9 @@ global $CONFIGTUI;
 function send_page($header, $page, $message = null)
 {
 	global $ERROR_MESSAGE;
-	UtilLogging::getInstance()->debug("Value of true: " . true);
-	UtilLogging::getInstance()->debug("Value of false: " . false);
-	UtilLogging::getInstance()->debug("Value of CONFIG[test]: " . $CONFIGTUI["test"]);
+	var_dump($CONFIGTUI);
+	$result = ob_get_clean();
+	UtilLogging::getInstance()->debug("Value of CONFIG[test]: " . $result);
 	if ($CONFIGTUI["test"])
 		throw new TuiException ("page error");
 	else
