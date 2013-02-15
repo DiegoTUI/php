@@ -1,6 +1,6 @@
 <?php
 
-include_once 'util/UtilCommons.php';
+$ERROR_MESSAGE = '';
 
 function send_page($header, $page, $message = null)
 {

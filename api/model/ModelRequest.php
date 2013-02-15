@@ -1,12 +1,11 @@
 <?php
 
-include_once 'util/UtilCommons.php';
 include_once 'error/error.php';
 
 /**
  * Variables in the request. Test mode is set adding a "test" variable.
  */
-class ModelRequest extends UtilCommons
+class ModelRequest
 {
 	var $variables;
 	var $test = false;
