@@ -43,7 +43,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
 			$request->read($key, true);
 			$this->fail('did not throw an exception when reading a mandatory non-existing key');
 		}
-		catch (TuiException e)
+		catch (TuiException $e)
 		{
 		//OK
 		}
