@@ -11,11 +11,11 @@ $ERROR_MESSAGE = '';
 function send_page($header, $page, $message = null)
 {
 	global $ERROR_MESSAGE;
-	global $CONFIGTUI;
-	var_dump($CONFIGTUI);
+	global $CONFIG;
+	var_dump($CONFIG);
 	$result = ob_get_clean();
 	UtilLogging::getInstance()->debug("Value of CONFIG[test]: " . $result);
-	if ($CONFIGTUI["test"])
+	if ($CONFIG["test"])
 		throw new TuiException ("page error");
 	else
 	{
