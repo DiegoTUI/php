@@ -2,6 +2,7 @@
 
 include_once 'util/UtilConfig.php';
 include_once 'util/UtilExceptions.php';
+include_once 'util/UtilLogging.php'
 
 $ERROR_MESSAGE = '';
 
@@ -9,6 +10,7 @@ function send_page($header, $page, $message = null)
 {
 	global $CONFIG;
 	global $ERROR_MESSAGE;
+	UtilLogging::getInstance()->debug("Value of CONFIG[test]: " . $CONFIG["test"]);
 	if ($CONFIG["test"])
 		throw new TuiException ("page error");
 	else
