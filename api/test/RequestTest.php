@@ -81,6 +81,7 @@ class RequestTest extends PHPUnit_Framework_TestCase
 	 */
 	protected function tearDown()
 	{
+		global $CONFIG;
 		$CONFIG['test'] = false;
 		ob_end_clean();
 	}
