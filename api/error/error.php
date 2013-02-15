@@ -11,9 +11,12 @@ function send_page($header, $page, $message = null)
 	global $ERROR_MESSAGE;
 	if ($CONFIG["test"])
 		throw new TuiException ("page error");
-	header($header);
-	$ERROR_MESSAGE = $message;
-	include_once('error/' . $page);
+	else
+	{
+		header($header);
+		$ERROR_MESSAGE = $message;
+		include_once('error/' . $page);
+	}
 	exit();
 }
 
