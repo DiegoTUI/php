@@ -95,7 +95,7 @@ class ModelEntity
 			$node_name = $attribute->path[i];
 			if (!isset($piece[$node_name]))
 				$piece[$node_name] = array();
-			$piece = $piece[$node_name];
+			$piece = &$piece[$node_name];
 		}
 		$piece[$attribute->name] = $attribute->value;
 	 }
