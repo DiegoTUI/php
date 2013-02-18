@@ -82,6 +82,7 @@ class ModelEntity
 		foreach($this->attributes as $attribute)
 		{
 			$this->process_attribute ($attribute, $result);
+			var_dump ($result);
 		}
 		
 		return $result;
