@@ -89,7 +89,7 @@ class ModelEntity
 	 
 	 function process_attribute ($attribute, &$result)
 	 {
-		$piece = $result;
+		$piece = &$result;
 		for ($i=0 ; $i<count($attribute->path); $i++)
 		{
 			$node_name = $attribute->path[i];
