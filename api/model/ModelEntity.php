@@ -79,19 +79,19 @@ class ModelEntity
 	 function get_xml_json()
 	 {
 		$result = array();
-		$count = 0;
+		//$count = 0;
 		foreach($this->attributes as $attribute)
 		{
-			var_dump ($result);
+			/*var_dump ($result);
 			
 			$stringOutput = ob_get_contents();
 			UtilLogging::getInstance()->debug('Partial xml_json ' . $count . ': ' . $stringOutput);
-			ob_clean();
+			ob_clean();*/
 			
 			$this->process_attribute ($attribute, $result);
-			$count++;
+			//$count++;
 			
-			if ($count == 4) exit();
+			//if ($count == 4) exit();
 		}
 		
 		return $result;
