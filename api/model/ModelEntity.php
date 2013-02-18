@@ -79,6 +79,8 @@ class ModelEntity
 		{
 			process_attrbute ($attribute, $result);
 		}
+		
+		return $result;
 	 }
 	 
 	 function process_attribute ($attribute, &$result)

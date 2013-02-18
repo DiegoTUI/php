@@ -179,39 +179,29 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 		$_REQUEST["password"] = "perrilla";
 		$_REQUEST["roleId"] = "user";
 	}
+	
+	/**
+	 * creates test ticket avail rq
+	 * @return void
+	 */
+	public function createTicketAvailRQ()
+	{
+		$_REQUEST["userName"] = "zurullo";
+		$_REQUEST["email"] = "zurullo@test";
+		$_REQUEST["password"] = "perrilla";
+		$_REQUEST["roleId"] = "user";
+	}
 
 	/**
 	 * reset POST variable
 	 * @return void
 	 */
-	public function resetPost()
+	public function resetRequest()
 	{
-		$_REQUEST["userId"] = NULL;
-		$_REQUEST["userName"] = NULL;
-		$_REQUEST["email"] = NULL;
-		$_REQUEST["password"] = NULL;
-		$_REQUEST["roleId"] = NULL;
-	}
-	
-	/**
-	 * reset GET variable
-	 * @return void
-	 */
-	public function resetGet()
-	{
-		$_REQUEST["userId"] = NULL;
-		$_REQUEST["appId"] = NULL;
-		$_REQUEST["appName"] = NULL;
-		$_REQUEST["storeLink"] = NULL;
-		$_REQUEST["os"] = NULL;
-		$_REQUEST["url"] = NULL;
-		$_REQUEST["webHookId"] = NULL;
-		$_REQUEST["type"] = NULL;
-		$_REQUEST["notifyWebHooks"] = NULL;
-		$_REQUEST["eventTypeId"] = NULL;
-		$_REQUEST["notifyKimia"] = NULL;
-		$_REQUEST["price"] = NULL;
-		$_REQUEST["kimiaAccess"] = NULL;
+		foreach ($_REQUEST as $key=>$value)
+		{
+			unset($_REQUEST[$key]);
+		}
 	}
 }
 

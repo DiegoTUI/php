@@ -155,7 +155,7 @@ class UserTest extends PHPUnit_Framework_TestCase
 		$token = $this->_common->validLogin();
 
 		//try to modify the user with an empty _REQUEST
-		$this->_common->resetPost();
+		$this->_common->resetRequest();
 		//call modify user with admin token, but nothing in it
 		try
 		{
