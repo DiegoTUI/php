@@ -221,7 +221,11 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 	 */
 	public function checkAttribute($attribute, $value)
 	{
+		var_dump($_REQUEST);
+		$stringOutput = ob_get_contents();
+		self::debug('stringOutput: ' . $stringOutput);
 		$this->assertEquals($_REQUEST[$attribute->id], $value);
+		ob_clean();
 	}
 	
 	/**
