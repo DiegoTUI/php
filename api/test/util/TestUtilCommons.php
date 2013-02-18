@@ -124,7 +124,7 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 		{
 			ControllerUser::removeUser(TUI_TEST_ADMIN_TOKEN);
 		}
-		catch (KimiaException $e) 
+		catch (TuiException $e) 
 		{
 			$this->fail("Unable to remove user with admin token: " . $e->getMessage());
 		}
@@ -194,7 +194,7 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 		$_REQUEST["PaginationData_itemsPerPage"] = "25";
 		$_REQUEST["PaginationData_pageNumber"] = "1";
 		$_REQUEST["ServiceOccupancy_AdultCount"] = "1";
-		$_REQUEST["ServiceOccupancy_ChildCount"] = "0";
+		$_REQUEST["ServiceOccupancy_ChildCount"] = "3";
 		$_REQUEST["Destination_code"] = "PMI";
 		$_REQUEST["Destination_Name"] = "Palma de Mallorca";
 		$_REQUEST["Destination_Name_Fake"] = "Fake";
