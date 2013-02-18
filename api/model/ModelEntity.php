@@ -79,14 +79,17 @@ class ModelEntity
 	 function get_xml_json()
 	 {
 		$result = array();
+		$count = 0;
 		foreach($this->attributes as $attribute)
 		{
 			$this->process_attribute ($attribute, $result);
 			var_dump ($result);
 			
 			$stringOutput = ob_get_contents();
-			UtilLogging::getInstance()->debug('Partial xml_json: ' . $stringOutput);
+			UtilLogging::getInstance()->debug('Partial xml_json ' . $count . ': ' . $stringOutput);
 			ob_clean();
+			
+			$count++;
 		}
 		
 		return $result;
