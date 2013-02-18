@@ -225,7 +225,7 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 		self::debug('Attribute about to check: ' . $attribute->id . " against value: " . $value);
 		if (isset($_REQUEST[$attribute->id]))
 		{
-			$this->assertTrue(equals($_REQUEST[$attribute->id, $value), "wrong value for attribute: " . $attribute->id . " - it is " . $attribute->value . " and should be: " . $value);
+			$this->assertTrue(equals($_REQUEST[$attribute->id], $value), "wrong value for attribute: " . $attribute->id . " - it is " . $attribute->value . " and should be: " . $value);
 			//$this->assertEquals($_REQUEST[$attribute->id], $value);
 		}
 		ob_clean();
