@@ -49,7 +49,7 @@ class ModelEntity
 	 /**
 	 * Fill all the writable attributes with the contents of $xml
 	 */
-	 function read_set_all($xml)
+	 function read_set_all_from_xml($xml)
 	 {
 		//TODO: parse xml and fill in the attributes
 	 }
