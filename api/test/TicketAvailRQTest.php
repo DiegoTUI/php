@@ -77,6 +77,10 @@ class TicketAvailRQTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals(count($REQUEST->variables), 1);
 		//produce the xml_json
 		$xml_json = $TICKET_AVAIL_RQ->get_xml_json();
+		var_dump($xml_json);
+		$stringOutput = ob_get_contents();
+		$this->_common->debug('xml_json after reading: ' . $stringOutput);
+		ob_clean();
 		//check that everything has been translated OK
 		foreach ($TICKET_AVAIL_RQ->attributes as $attribute)
 		{
