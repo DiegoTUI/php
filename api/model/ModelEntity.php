@@ -84,8 +84,8 @@ class ModelEntity
 			$this->process_attribute ($attribute, $result);
 			var_dump ($result);
 			
-			$stringOutput = ob_get_clean();
-			UtilLogging::getInstance()->debug('Partial xml_json: ' . $stringOutput);
+			//$stringOutput = ob_get_clean();
+			//UtilLogging::getInstance()->debug('Partial xml_json: ' . $stringOutput);
 		}
 		
 		return $result;
