@@ -3,6 +3,7 @@
 include_once 'test/util/TestUtilMongo.php';
 include_once 'test/util/TestUtilLogging.php';
 include_once 'util/UtilConstants.php';
+include_once 'util/UtilKernel.php';
 include_once 'controller/ControllerToken.php';
 include_once 'controller/ControllerUser.php';
 
@@ -194,7 +195,7 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 		$_REQUEST["PaginationData_itemsPerPage"] = "25";
 		$_REQUEST["PaginationData_pageNumber"] = "1";
 		$_REQUEST["ServiceOccupancy_AdultCount"] = "1";
-		$_REQUEST["ServiceOccupancy_ChildCount"] = "3";
+		$_REQUEST["ServiceOccupancy_ChildCount"] = "0";
 		$_REQUEST["Destination_code"] = "PMI";
 		$_REQUEST["Destination_Name"] = "Palma de Mallorca";
 		$_REQUEST["Destination_Name_Fake"] = "Fake";
@@ -223,7 +224,10 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 	{
 		self::debug('Attribute about to check: ' . $attribute->id . " against value: " . $value);
 		if (isset($_REQUEST[$attribute->id]))
-			$this->assertEquals($_REQUEST[$attribute->id], $value);
+		{
+			$this->assertTrue(equals($_REQUEST[$attribute->id, $value));
+			//$this->assertEquals($_REQUEST[$attribute->id], $value);
+		}
 		ob_clean();
 	}
 	
