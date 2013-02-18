@@ -5,6 +5,7 @@
  */
 
 include_once 'model/ModelEntity.php';
+include_once 'model/ModelAttribute.php';
 
 /**
  * Ticket Availability Request.
