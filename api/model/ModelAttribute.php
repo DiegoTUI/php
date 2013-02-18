@@ -51,7 +51,7 @@ class Attribute
 		}
 		if (equals($this->type, "attribute"))
 			array_push($this->path, $this->type);
-		
+			
 		if ($value != null)
 			$this->writeable = false;
 			
@@ -92,6 +92,9 @@ class Mandatory extends Attribute
 		$this->mandatory = true;
 		$this->writeable = true;
 		$this->visible = true;
+		
+		if ($value != null)
+			$this->writeable = false;
 	}
 }
 
@@ -105,6 +108,9 @@ class Optional extends Attribute
 		parent::__construct($name, $dot_path, $type, $value);
 		$this->writeable = true;
 		$this->visible = true;
+		
+		if ($value != null)
+			$this->writeable = false;
 	}
 }
 
