@@ -1,6 +1,7 @@
 <?php
 
 include_once 'model/TicketAvailRQ.php';
+include_once 'model/ModelRequest.php';
 include_once 'test/util/TestUtilCommons.php';
 include_once 'util/UtilConfig.php';
 include_once 'util/UtilExceptions.php';
@@ -30,15 +31,16 @@ class TicketAvailRQTest extends PHPUnit_Framework_TestCase
 	public function testReadRequest()
 	{
 		$sizeRequest = count($_REQUEST);
-		//Create the request
-		$request = new ModelRequest($_REQUEST);
+		//Create the request in the global variable $REQUEST
+		global $REQUEST;
+		$REQUEST = new ModelRequest($_REQUEST);
 		//Check that it was created OK
-		$this->assertEquals(count($request->variables),$sizeRequest);
+		$this->assertEquals(count($REQUEST->variables),$sizeRequest);
 		//Read all the attributes from the request
 		global $TICKET_AVAIL_RQ;
 		$TICKET_AVAIL_RQ->read_set_all();
 		//Check that there is one attribute left in the request
-		$this->assertEquals(count($request->variables), 1);
+		$this->assertEquals(count($REQUEST->variables), 1);
 		//check that the attributes were properly imported
 		foreach ($TICKET_AVAIL_RQ->attributes as $attribute)
 		{
