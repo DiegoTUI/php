@@ -44,7 +44,7 @@ class Attribute
 		}
 		
 		$this->type = $type;
-		if ($type == null)	//"Autocalculate" the type based on the name
+		if ($type === null)	//"Autocalculate" the type based on the name
 		{
 			$this->type = 'attribute';
 			if (startsWithUpper($name))
@@ -57,6 +57,8 @@ class Attribute
 			$this->writeable = false;
 			
 		$this->value = $value;
+		
+		UtilLogging::getInstance()->debug("Attribute constructed - id: " . $this->id . " - type: " . $this->type . " - path: " . implode(", ", $this->path));
 	}
 
 	/**
