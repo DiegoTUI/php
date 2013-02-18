@@ -80,7 +80,7 @@ class Attribute
 		}
 		$this->value = $REQUEST->read($this->id, $this->mandatory);
 		
-		UtilLogging::getInstance()->debug("read_set - Attribute: ". $this-id . " - value set: " . $this->value);
+		UtilLogging::getInstance()->debug("read_set - Attribute: ". $this->id . " - value set: " . $this->value);
 	}
 }
 
