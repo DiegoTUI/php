@@ -221,7 +221,7 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 	 */
 	public function checkAttribute($attribute, $value)
 	{
-		$this->assertEquals($_REQUEST[$attribute["id"]], $value);
+		$this->assertEquals($_REQUEST[$attribute->id], $value);
 	}
 	
 	/**

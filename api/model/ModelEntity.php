@@ -5,6 +5,7 @@
  */
 
 include_once 'model/ModelRequest.php';
+include_once 'util/UtilLogging.php';
 
 /**
  * A basic entity: a collection of attributes with a name
@@ -42,7 +43,10 @@ class ModelEntity
 		foreach($this->attributes as $attribute)
 		{
 			if ($attribute->writeable)
+			{
+				UtilLogging::getInstance()->debug("read_set_all - Trying to set attribute: " . $attribute->id);
 				$attribute->read_set();
+			}
 		}
 	 }
 	 
