@@ -236,12 +236,11 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 	 */
 	public function check_xml_json_attribute($attribute, $xml_json)
 	{
-		$piece = $xml_json;
-		for ($i=0 ; $i<count($attribute->path); $i++)
+		$piece = &$xml_json;
+		foreach ($attribute->path as $node_name)
 		{
-			$node_name = $attribute->path[i];
 			$this->assertTrue (isset($piece[$node_name]), "Level " . $node_name . " not set in xml_json for attribute: " . $attribute->id);
-			$piece = $piece[$node_name];
+			$piece = &$piece[$node_name];
 		}
 		$this->assertTrue (equals($piece[$attribute->name], $attribute->value), "Value for attribute: " . $attribute->id . " not set properly in xml_json. It is " . $piece[$attribute->name] . " and should be " . $attribute->value);
 	}
