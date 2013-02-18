@@ -217,7 +217,7 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 	}
 	
 	/**
-	 * compare the value of an attriv¡bute with what's in the $_REQUEST global
+	 * compare the value of an attribute with what's in the $_REQUEST global
 	 * @return void
 	 */
 	public function checkAttribute($attribute, $value)
@@ -228,6 +228,22 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 			$this->assertTrue(equals($_REQUEST[$attribute->id], $value), "wrong value for attribute: " . $attribute->id . " - it is " . $attribute->value . " and should be: " . $value);
 		}
 		ob_clean();
+	}
+	
+	/**
+	 * check if an attribute was correctly translated to xml_json
+	 * @return void
+	 */
+	public function check_xml_json_attribute($attribute, $xml_json)
+	{
+		$piece = $xml_json;
+		for ($i=0 ; $i<count($attribute->path); $i++)
+		{
+			$node_name = $attribute->path[i];
+			$this->assertTrue (isset($piece[$node_name]), "Level " . $node_name . " not set in xml_json for attribute: " . $attribute->id);
+			$piece = $piece[$node_name];
+		}
+		$this->assertTrue (equals($piece[$attribute->name], $attribute->value), "Value for attribute: " . $attribute->id . " not set properly in xml_json. It is " . $piece[$attribute->name] . " and should be " . $attribute->value);
 	}
 	
 	/**

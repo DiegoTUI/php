@@ -52,7 +52,36 @@ class TicketAvailRQTest extends PHPUnit_Framework_TestCase
 			$this->_common->checkAttribute ($attribute, $attribute->value);
 		}
 		
+		//leave everything clean for the next test
+		$this->_common->resetRequest();
+		$this->_common->createTicketAvailRQ();
 		ob_clean();
+	}
+	
+	/**
+	 * Test getting the xml_json
+	 * @return void
+	 */
+	public function testXmlJson()
+	{
+		$sizeRequest = count($_REQUEST);
+		//Create the request in the global variable $REQUEST
+		global $REQUEST;
+		$REQUEST = new ModelRequest($_REQUEST);
+		//Check that it was created OK
+		$this->assertEquals(count($REQUEST->variables),$sizeRequest);
+		//Read all the attributes from the request
+		global $TICKET_AVAIL_RQ;
+		$TICKET_AVAIL_RQ->read_set_all();
+		//Check that there is one attribute left in the request
+		$this->assertEquals(count($REQUEST->variables), 1);
+		//produce the xml_json
+		$xml_json = $TICKET_AVAIL_RQ->get_xml_json();
+		//check that everything has been translated OK
+		foreach ($TICKET_AVAIL_RQ->attributes as $attribute)
+		{
+			$this->_common->check_xml_json_attribute($attribute, $xml_json);
+		}
 	}
 	
 	/**
