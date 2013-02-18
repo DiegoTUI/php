@@ -103,6 +103,7 @@ class ModelEntity
 		for ($i=0 ; $i<count($attribute->path); $i++)
 		{
 			$node_name = $attribute->path[i];
+			UtilLogging::getInstance()->debug('Node name process_attribute: ' . $node_name . ' for attribute: ' . $attribute->id);
 			if (!isset($piece[$node_name]))
 				$piece[$node_name] = array();
 			$piece = &$piece[$node_name];
