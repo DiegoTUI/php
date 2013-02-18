@@ -100,10 +100,11 @@ class ModelEntity
 	 function process_attribute ($attribute, &$result)
 	 {
 		$piece = &$result;
-		for ($i=0 ; $i<count($attribute->path); $i++)
+		//for ($i=0 ; $i<count($attribute->path); $i++)
+		foreach ($attribute->path as $node_name)
 		{
-			$node_name = $attribute->path[i];
-			UtilLogging::getInstance()->debug('Node name process_attribute: ' . $node_name . ' for attribute: ' . $attribute->id . " i: " . $i . " and path: " . implode(", ", $attribute->path));
+			//$node_name = $attribute->path[i];
+			UtilLogging::getInstance()->debug('Node name process_attribute: ' . $node_name . ' for attribute: ' . $attribute->id . " i: " . 0 . " and path: " . implode(", ", $attribute->path));
 			if (!isset($piece[$node_name]))
 				$piece[$node_name] = array();
 			$piece = &$piece[$node_name];
