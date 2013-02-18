@@ -90,6 +90,8 @@ class ModelEntity
 			ob_clean();
 			
 			$count++;
+			
+			if ($count == 4) exit();
 		}
 		
 		return $result;
