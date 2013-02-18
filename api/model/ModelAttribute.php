@@ -5,7 +5,7 @@
  */
  
  include_once 'util/UtilKernel.php';
- include_once 'util/UtilLogging.php'
+ include_once 'util/UtilLogging.php';
 
 /**
  * An attribute in an entity. The creator can specify if it is mandatory,
