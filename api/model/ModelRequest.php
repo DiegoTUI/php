@@ -1,7 +1,7 @@
 <?php
 
 include_once 'error/error.php';
-include_once 'util/UtilLogging.php'
+include_once 'util/UtilLogging.php';
 
 /**
  * Variables in the request. Test mode is set adding a "test" variable.
