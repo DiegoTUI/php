@@ -221,11 +221,9 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 	 */
 	public function checkAttribute($attribute, $value)
 	{
-		var_dump($_REQUEST);
-		$stringOutput = ob_get_contents();
-		self::debug('Global _REQUEST: ' . $stringOutput);
 		self::debug('Attribute about to check: ' . $attribute->id . " against value: " . $value);
-		$this->assertEquals($_REQUEST[$attribute->id], $value);
+		if (isset($_REQUEST[$attribute->id]))
+			$this->assertEquals($_REQUEST[$attribute->id], $value);
 		ob_clean();
 	}
 	
