@@ -79,19 +79,9 @@ class ModelEntity
 	 function get_xml_json()
 	 {
 		$result = array();
-		//$count = 0;
 		foreach($this->attributes as $attribute)
-		{
-			/*var_dump ($result);
-			
-			$stringOutput = ob_get_contents();
-			UtilLogging::getInstance()->debug('Partial xml_json ' . $count . ': ' . $stringOutput);
-			ob_clean();*/
-			
+		{	
 			$this->process_attribute ($attribute, $result);
-			//$count++;
-			
-			//if ($count == 4) exit();
 		}
 		
 		return $result;
@@ -100,10 +90,9 @@ class ModelEntity
 	 function process_attribute ($attribute, &$result)
 	 {
 		$piece = &$result;
-		//for ($i=0 ; $i<count($attribute->path); $i++)
+		
 		foreach ($attribute->path as $node_name)
 		{
-			//$node_name = $attribute->path[i];
 			UtilLogging::getInstance()->debug('Node name process_attribute: ' . $node_name . ' for attribute: ' . $attribute->id . " i: " . 0 . " and path: " . implode(", ", $attribute->path));
 			if (!isset($piece[$node_name]))
 				$piece[$node_name] = array();
