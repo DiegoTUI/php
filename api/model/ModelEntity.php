@@ -81,7 +81,7 @@ class ModelEntity
 		$result = array();
 		foreach($this->attributes as $attribute)
 		{
-			process_attribute ($attribute, $result);
+			$this->process_attribute ($attribute, $result);
 		}
 		
 		return $result;
