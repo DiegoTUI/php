@@ -5,6 +5,7 @@
  */
  
  include_once 'util/UtilKernel.php';
+ include_once 'util/UtilLogging.php'
 
 /**
  * An attribute in an entity. The creator can specify if it is mandatory,
@@ -78,6 +79,8 @@ class Attribute
 			page_error('Read only attribute ' . $this->name);
 		}
 		$this->value = $REQUEST->read($this->id, $this->mandatory);
+		
+		UtilLogging::getInstance()->debug("read_set - Attribute: ". $this-id . " - value set: " . $this->value);
 	}
 }
 

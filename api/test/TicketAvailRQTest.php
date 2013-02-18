@@ -44,6 +44,7 @@ class TicketAvailRQTest extends PHPUnit_Framework_TestCase
 		//check that the attributes were properly imported
 		foreach ($TICKET_AVAIL_RQ->attributes as $attribute)
 		{
+			$this->_common->debug ("About to check attribute: " . $attribute->id . " with value: " . $attribute->value);
 			$this->_common->checkAttribute ($attribute, $value);
 		}
 		

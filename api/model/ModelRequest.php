@@ -1,6 +1,7 @@
 <?php
 
 include_once 'error/error.php';
+include_once 'util/UtilLogging.php'
 
 /**
  * Variables in the request. Test mode is set adding a "test" variable.
@@ -27,12 +28,14 @@ class ModelRequest
 	{
 		if (!$this->has($key, $mandatory))
 		{
+			UtilLogging::getInstance()->debug("read - has returned false for key: ". $key);
 			return $default;
 		}
 		$result = $this->variables[$key];
 		unset($this->variables[$key]);
 		if (!$result)
 		{
+			UtilLogging::getInstance()->debug("read - result was read null for key: ". $key);
 			return $default;
 		}
 		return $result;
