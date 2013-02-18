@@ -41,3 +41,4 @@ $CONFIG = array(
 							</soapenv:Envelope>')
 );
 
+date_default_timezone_set('UTC');

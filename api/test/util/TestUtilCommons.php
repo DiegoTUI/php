@@ -186,14 +186,25 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 	 */
 	public function createTicketAvailRQ()
 	{
-		$_REQUEST["userName"] = "zurullo";
-		$_REQUEST["email"] = "zurullo@test";
-		$_REQUEST["password"] = "perrilla";
-		$_REQUEST["roleId"] = "user";
+		$_REQUEST["echoToken"] = "DummyEchoToken";
+		$_REQUEST["sessionId"] = "DummySessionId";
+		$_REQUEST["Language"] = "ENG";
+		$_REQUEST["Credentials_User"] = "BDS";
+		$_REQUEST["Credentials_Password"] = "BDS";
+		$_REQUEST["PaginationData_itemsPerPage"] = "25";
+		$_REQUEST["PaginationData_pageNumber"] = "1";
+		$_REQUEST["ServiceOccupancy_AdultCount"] = "1";
+		$_REQUEST["ServiceOccupancy_ChildCount"] = "0";
+		$_REQUEST["Destination_code"] = "PMI";
+		$_REQUEST["Destination_Name"] = "Palma de Mallorca";
+		$_REQUEST["Destination_Name_Fake"] = "Fake";
+		$_REQUEST["DateFrom_date"] = $this->today();
+		$_REQUEST["DateTo_date"] = $this->tomorrow();
+		
 	}
-
+	
 	/**
-	 * reset POST variable
+	 * reset REQUEST variable
 	 * @return void
 	 */
 	public function resetRequest()
@@ -202,6 +213,33 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 		{
 			unset($_REQUEST[$key]);
 		}
+	}
+	
+	/**
+	 * compare the value of an attriv¡bute with what's in the $_REQUEST global
+	 * @return void
+	 */
+	public function checkAttribute($attribute, $value)
+	{
+		$this->assertEquals($_REQUEST[$attribute["id"]], $value);
+	}
+	
+	/**
+	 * returns today's date in format "yyyymmdd"
+	 * @return void
+	 */
+	public function today()
+	{
+		return date("Ymd");
+	}
+	
+	/**
+	 * returns tomorrow's date in format "yyyymmdd"
+	 * @return void
+	 */
+	public function tomorrow()
+	{
+		return date("Ymd", time() + 86400);
 	}
 }
 
