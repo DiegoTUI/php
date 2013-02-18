@@ -38,7 +38,7 @@ class TicketAvailRQTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals(count($REQUEST->variables),$sizeRequest);
 		var_dump($REQUEST);
 		$stringOutput = ob_get_contents();
-		self::debug('REQUEST after reading: ' . $stringOutput);
+		$this->_common->debug('REQUEST after reading: ' . $stringOutput);
 		ob_clean();
 		//Read all the attributes from the request
 		global $TICKET_AVAIL_RQ;
