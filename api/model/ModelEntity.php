@@ -82,13 +82,13 @@ class ModelEntity
 		$count = 0;
 		foreach($this->attributes as $attribute)
 		{
-			$this->process_attribute ($attribute, $result);
 			var_dump ($result);
 			
 			$stringOutput = ob_get_contents();
 			UtilLogging::getInstance()->debug('Partial xml_json ' . $count . ': ' . $stringOutput);
 			ob_clean();
 			
+			$this->process_attribute ($attribute, $result);
 			$count++;
 			
 			if ($count == 4) exit();
