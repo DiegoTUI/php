@@ -28,7 +28,7 @@ $CONFIG = array(
 	
 	//xml headers and footers
 	'xml_headers' => array(
-		'TicketAvail' => '<soapenv:Envelope
+		'TicketAvailRQ' => '<soapenv:Envelope
 							soapenv:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/"
 							xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 							<soapenv:Body>
@@ -36,7 +36,7 @@ $CONFIG = array(
 							xmlns:hb="http://axis.frontend.hydra.hotelbeds.com" xsi:type="xsd:string">'),
 							
 	'xml_footers' => array (
-		'TicketAvail' => ' </hb:getTicketAvail>
+		'TicketAvailRQ' => ' </hb:getTicketAvail>
 							</soapenv:Body>
 							</soapenv:Envelope>')
 );
