@@ -31,14 +31,14 @@ class ModelRequest
 			UtilLogging::getInstance()->debug("read - has returned false for key: ". $key);
 			return $default;
 		}
-		$result = (string)($this->variables[$key]);
+		$result = ($this->variables[$key]);
 		unset($this->variables[$key]);
 		if ($result === null)
 		{
 			UtilLogging::getInstance()->debug("read - result was read null for key: ". $key);
 			return $default;
 		}
-		return (string)$result;
+		return $result;
 	}
 
 	/**
