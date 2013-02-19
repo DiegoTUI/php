@@ -145,6 +145,7 @@ class ModelEntity
 				{
 					UtilLogging::getInstance()->debug("xmlfy_element - Inner value is an array. Calling xmlfy for " . $key);
 					$this->xmlfy_element ($key, $inner_value);
+					$result = $result . "</". $key . ">\n";
 				}
 				else
 				{
