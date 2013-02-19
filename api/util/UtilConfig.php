@@ -20,8 +20,8 @@ $CONFIG = array(
 	'url' => 'http://212.170.239.71/appservices/ws/FrontendService',
 	
 	//User and password authorized to make the calls
-	'user' => 'BDS',
-	'password' => 'BDS',
+	'user' => 'ISLAS',
+	'password' => 'ISLAS',
 	
 	//name of the parameter in the POST call
 	'parameter_name' => 'xml_request',
