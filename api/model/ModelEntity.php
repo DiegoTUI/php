@@ -70,6 +70,7 @@ class ModelEntity
 		
 		//$xml = $xml . $this->produce_xml($xml_json);
 		$xml = $xml . $this->xmlfy_element($this->name, $xml_json);
+		$xml = $xml . "</". $this->name . ">\n";
 		
 		$xml = $xml . $CONFIG['xml_footers'][$this->name];
 		
@@ -136,8 +137,8 @@ class ModelEntity
 		}
 		$result = $result . ">\n";
 		
-		if (is_array($value))
-		{
+		//if (is_array($value))
+		//{
 			foreach ($value as $key=>$inner_value)
 			{
 				UtilLogging::getInstance()->debug("xmlfy_element - Processing key: " . $key);
@@ -154,13 +155,13 @@ class ModelEntity
 					UtilLogging::getInstance()->debug("xmlfy_element - result updated: " . $result);
 				}
 			}
-		}
-		//else
-		//{
+		//}
+		/*else
+		{
 			UtilLogging::getInstance()->debug("xmlfy_element - this is the end");
 			$result = $result . $value . "</". $element . ">\n";
 			UtilLogging::getInstance()->debug("xmlfy_element - finishing result: " . $result);
-		//}
+		}*/
 		
 		return $result;
 	 }
