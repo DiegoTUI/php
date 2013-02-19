@@ -96,15 +96,15 @@ class ModelEntity
 	 {
 		$result = "<" . $this->name;
 		//header
-		if (is_array($xml_json["attributes"]))
+		if (is_array($xml_json["attribute"]))
 		{
-			foreach ($xml_json["attributes"] as $key=>$value)
+			foreach ($xml_json["attribute"] as $key=>$value)
 			{
 				$result = $result . " " . $key . "=" . $value;
 			}
 		}
 		$result = $result . ">\n";
-		unset($xml_json["attributes"]);
+		unset($xml_json["attribute"]);
 		//body
 		foreach ($xml_json as $element=>$value)
 		{
@@ -119,16 +119,16 @@ class ModelEntity
 	 function xmlfy_element($element, $value)
 	 {
 		$result = "<" . $element;
-		if (isset($value["attributes"]))
+		if (isset($value["attribute"]))
 		{
-			if (is_array($value["attributes"]))
+			if (is_array($value["attribute"]))
 			{
-				foreach ($value["attributes"] as $key=>$att_value)
+				foreach ($value["attribute"] as $key=>$att_value)
 				{
 					$result = $result . " " . $key . "=" . $att_value;
 				}
 			}
-			$value["attributes"] = null;
+			$value["attribute"] = null;
 		}
 		$result = $result . ">\n";
 		
