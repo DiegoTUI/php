@@ -128,7 +128,7 @@ class ModelEntity
 				foreach ($value["attribute"] as $key=>$att_value)
 				{
 					UtilLogging::getInstance()->debug("xmlfy_element - adding attribute for key: " . $key);
-					$result = $result . " " . $key . "=" . $att_value;
+					$result = $result . " " . $key . "=\"" . $att_value . "\"";
 					UtilLogging::getInstance()->debug("xmlfy_element - added attribute. Result: " . $result);
 				}
 			}
