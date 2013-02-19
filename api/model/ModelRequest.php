@@ -38,7 +38,7 @@ class ModelRequest
 			UtilLogging::getInstance()->debug("read - result was read null for key: ". $key);
 			return $default;
 		}
-		return $result;
+		return (string)$result;
 	}
 
 	/**
