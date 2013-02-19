@@ -68,7 +68,7 @@ class ModelEntity
 		//TODO: produce an xml based on the entity's attributes
 		$xml_json = $this->get_xml_json();
 		
-		$xml = $xml . produce_xml($xml_json);
+		$xml = $xml . $this->produce_xml($xml_json);
 		
 		$xml = $xml . $CONFIG['xml_footers'][$this->name];
 		
@@ -108,7 +108,7 @@ class ModelEntity
 		//body
 		foreach ($xml_json as $element=>$value)
 		{
-			$result = $result . xmlfy_element($element, $value);
+			$result = $result . $this->xmlfy_element($element, $value);
 		}
 		//footer
 		$result = $result . "</" . $this->name . ">\n";
@@ -130,7 +130,7 @@ class ModelEntity
 		foreach ($value as $key=>$inner_value)
 		{
 			if (is_array($inner_value))
-				xmlfy_element ($key, $inner_value);
+				$this->xmlfy_element ($key, $inner_value);
 			else
 				$result = $result . "<" . $key . ">" . $inner_value . "</". $key . ">\n";
 			
