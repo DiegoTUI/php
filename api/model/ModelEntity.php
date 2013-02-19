@@ -68,7 +68,8 @@ class ModelEntity
 		//TODO: produce an xml based on the entity's attributes
 		$xml_json = $this->get_xml_json();
 		
-		$xml = $xml . $this->produce_xml($xml_json);
+		//$xml = $xml . $this->produce_xml($xml_json);
+		$xml = $xml . $this->xmlfy_element($this->name, $xml_json);
 		
 		$xml = $xml . $CONFIG['xml_footers'][$this->name];
 		
