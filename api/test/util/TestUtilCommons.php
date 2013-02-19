@@ -195,7 +195,7 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 		$_REQUEST["PaginationData_itemsPerPage"] = "25";
 		$_REQUEST["PaginationData_pageNumber"] = "1";
 		$_REQUEST["ServiceOccupancy_AdultCount"] = "1";
-		$_REQUEST["ServiceOccupancy_ChildCount"] = "0";
+		$_REQUEST["ServiceOccupancy_ChildCount"] = (string)"0";
 		$_REQUEST["Destination_code"] = "PMI";
 		$_REQUEST["Destination_Name"] = "Palma de Mallorca";
 		$_REQUEST["Destination_Name_Fake"] = "Fake";
