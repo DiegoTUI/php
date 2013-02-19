@@ -155,12 +155,12 @@ class ModelEntity
 				}
 			}
 		}
-		else
-		{
+		//else
+		//{
 			UtilLogging::getInstance()->debug("xmlfy_element - this is the end");
 			$result = $result . $value . "</". $element . ">\n";
 			UtilLogging::getInstance()->debug("xmlfy_element - finishing result: " . $result);
-		}
+		//}
 		
 		return $result;
 	 }
