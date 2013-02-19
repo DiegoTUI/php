@@ -64,9 +64,9 @@ class ModelEntity
 	 function get_xml()
 	 {
 		global $CONFIG;
-		$xml = $CONFIG['xml_headers'][$this->name];		
-		$xml_json = $this->get_xml_json();
+		$xml = $CONFIG['xml_headers'][$this->name];	
 		
+		$xml_json = $this->get_xml_json();		
 		$xml = $xml . $this->xmlfy_element($this->name, $xml_json);
 		$xml = $xml . "</". $this->name . ">\n";
 		
@@ -85,49 +85,42 @@ class ModelEntity
 		{	
 			$this->process_attribute ($attribute, $result);
 		}
-		
 		return $result;
 	 }
 	 
 	 /**
 	 * Recursive function to produce the xml from the xml_json
 	 */
-	 function xmlfy_element($element, $value)
+	 function xmlfy_element($element, $body)
 	 {
 		static $result = "";
 		$result = $result . "<" . $element;
-		if (isset($value["attribute"]))
+		//attributes
+		if (isset($body["attribute"]))
 		{
-			if (is_array($value["attribute"]))
+			if (is_array($body["attribute"]))
 			{
-				foreach ($value["attribute"] as $key=>$att_value)
+				foreach ($body["attribute"] as $key=>$value)
 				{
-					UtilLogging::getInstance()->debug("xmlfy_element - adding attribute for key: " . $key);
-					$result = $result . " " . $key . "=\"" . $att_value . "\"";
-					UtilLogging::getInstance()->debug("xmlfy_element - added attribute. Result: " . $result);
+					$result = $result . " " . $key . "=\"" . $value . "\"";
 				}
 			}
-			unset($value["attribute"]);
+			unset($body["attribute"]);
 		}
 		$result = $result . ">\n";
-		
-		foreach ($value as $key=>$inner_value)
+		//elements
+		foreach ($body as $key=>$value)
 		{
-			UtilLogging::getInstance()->debug("xmlfy_element - Processing key: " . $key);
-			if (is_array($inner_value))
+			if (is_array($value))
 			{
-				UtilLogging::getInstance()->debug("xmlfy_element - Inner value is an array. Calling xmlfy for " . $key);
-				$this->xmlfy_element ($key, $inner_value);
+				$this->xmlfy_element ($key, $value);
 				$result = $result . "</". $key . ">\n";
 			}
 			else
 			{
-				UtilLogging::getInstance()->debug("xmlfy_element - Inner value is a string. constructing xml for key: " . $key . " and value: " . $inner_value);
-				$result = $result . "<" . $key . ">" . $inner_value . "</". $key . ">\n";
-				UtilLogging::getInstance()->debug("xmlfy_element - result updated: " . $result);
+				$result = $result . "<" . $key . ">" . $value . "</". $key . ">\n";
 			}
 		}
-	
 		return $result;
 	 }
 	 
