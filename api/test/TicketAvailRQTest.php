@@ -89,6 +89,24 @@ class TicketAvailRQTest extends PHPUnit_Framework_TestCase
 	}
 	
 	/**
+	 * Test getting the xml
+	 * @return void
+	 */
+	public function testGetXml()
+	{
+		$sizeRequest = count($_REQUEST);
+		//Create the request in the global variable $REQUEST
+		global $REQUEST;
+		$REQUEST = new ModelRequest($_REQUEST);
+		//Check that it was created OK
+		$this->assertEquals(count($REQUEST->variables),$sizeRequest);
+		//Read all the attributes from the request
+		global $TICKET_AVAIL_RQ;
+		$TICKET_AVAIL_RQ->read_set_all();
+	
+	}
+	
+	/**
 	 * @return void
 	 */
 	protected function tearDown()

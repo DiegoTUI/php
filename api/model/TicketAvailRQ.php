@@ -10,7 +10,7 @@ include_once 'model/ModelAttribute.php';
 /**
  * Ticket Availability Request.
  */
-$TICKET_AVAIL_RQ = new ModelEntity('TicketAvail', array(
+$TICKET_AVAIL_RQ = new ModelEntity('TicketAvailRQ', array(
 	new Mandatory('echoToken'),
 	new Mandatory('sessionId'),
 	new Mandatory('xmlns', null, null, 'http://www.hotelbeds.com/schemas/2005/06/messages'),

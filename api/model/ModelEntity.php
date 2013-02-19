@@ -68,6 +68,8 @@ class ModelEntity
 		//TODO: produce an xml based on the entity's attributes
 		$xml_json = $this->get_xml_json();
 		
+		$xml = $xml . produce_xml($xml_json);
+		
 		$xml = $xml . $CONFIG['xml_footers'][$this->name];
 		
 		return $xml;
@@ -85,6 +87,54 @@ class ModelEntity
 		}
 		
 		return $result;
+	 }
+	 
+	 /**
+	 * Produce the main body of the xml (string) from the $xml_json
+	 */
+	 function produce_xml($xml_json)
+	 {
+		$result = "<" . $this->name;
+		//header
+		if (is_array($xml_json["attributes"]))
+		{
+			foreach ($xml_json["attributes"] as $key=>$value)
+			{
+				$result = $result . " " . $key . "=" . $value;
+			}
+		}
+		$result = $result . ">\n";
+		unset($xml_json["attributes"]);
+		//body
+		foreach ($xml_json as $element=>$value)
+		{
+			$result = $result . xmlfy_element($element, $value);
+		}
+		//footer
+		$result = $result . "</" . $this->name . ">\n";
+		
+	 }
+	 
+	 function xmlfy_element($element, $value)
+	 {
+		$result = "<" . $element;
+		if (is_array($value["attributes"]))
+		{
+			foreach ($value["attributes"] as $key=>$att_value)
+			{
+				$result = $result . " " . $key . "=" . $att_value;
+			}
+		}
+		$result = $result . ">\n";
+		unset($value["attributes"]);
+		foreach ($value as $key=>$inner_value)
+		{
+			if (is_array($inner_value))
+				xmlfy_element ($key, $inner_value);
+			else
+				$result = $result . "<" . $key . ">" . $inner_value . "</". $key . ">\n";
+			
+		}
 	 }
 	 
 	 function process_attribute ($attribute, &$result)
