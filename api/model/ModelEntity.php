@@ -119,14 +119,16 @@ class ModelEntity
 	 
 	 function xmlfy_element($element, $value)
 	 {
-		$result = "<" . $element;
+		static $result = "<" . $element;
 		if (isset($value["attribute"]))
 		{
 			if (is_array($value["attribute"]))
 			{
 				foreach ($value["attribute"] as $key=>$att_value)
 				{
+					UtilLogging::getInstance()->debug("xmlfy_element - adding attribute for key: " . $key);
 					$result = $result . " " . $key . "=" . $att_value;
+					UtilLogging::getInstance()->debug("xmlfy_element - added attribute. Result: " . $result);
 				}
 			}
 			$value["attribute"] = null;
@@ -139,15 +141,23 @@ class ModelEntity
 			{
 				UtilLogging::getInstance()->debug("xmlfy_element - Processing key: " . $key);
 				if (is_array($inner_value))
+				{
+					UtilLogging::getInstance()->debug("xmlfy_element - Inner value is an array. Calling xmlfy for " . $key);
 					$this->xmlfy_element ($key, $inner_value);
+				}
 				else
+				{
+					UtilLogging::getInstance()->debug("xmlfy_element - Inner value is a string. constructing xml for key: " . $key . " and value: " . $inner_value);
 					$result = $result . "<" . $key . ">" . $inner_value . "</". $key . ">\n";
-			
+					UtilLogging::getInstance()->debug("xmlfy_element - result updated: " . $result);
+				}
 			}
 		}
 		else
 		{
+			UtilLogging::getInstance()->debug("xmlfy_element - this is the end");
 			$result = $result . $value . "</". $element . ">\n";
+			UtilLogging::getInstance()->debug("xmlfy_element - finishing result: " . $result);
 		}
 		
 		return $result;
