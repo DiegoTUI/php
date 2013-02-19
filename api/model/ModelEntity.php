@@ -77,7 +77,7 @@ class ModelEntity
 	 }
 	 
 	 /**
-	 * Produce an intermmediata xml_json structure
+	 * Produce an intermmediate xml_json structure
 	 */
 	 function get_xml_json()
 	 {
@@ -137,6 +137,7 @@ class ModelEntity
 		{
 			foreach ($value as $key=>$inner_value)
 			{
+				UtilLogging::getInstance()->debug("xmlfy_element - Processing key: " . $key);
 				if (is_array($inner_value))
 					$this->xmlfy_element ($key, $inner_value);
 				else
