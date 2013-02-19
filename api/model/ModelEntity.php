@@ -132,7 +132,7 @@ class ModelEntity
 					UtilLogging::getInstance()->debug("xmlfy_element - added attribute. Result: " . $result);
 				}
 			}
-			$value["attribute"] = null;
+			unset($value["attribute"]);
 		}
 		$result = $result . ">\n";
 		
