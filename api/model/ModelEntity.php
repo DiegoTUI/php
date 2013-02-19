@@ -113,6 +113,7 @@ class ModelEntity
 		//footer
 		$result = $result . "</" . $this->name . ">\n";
 		
+		return $result;
 	 }
 	 
 	 function xmlfy_element($element, $value)
