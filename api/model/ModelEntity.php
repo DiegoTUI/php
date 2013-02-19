@@ -127,7 +127,7 @@ class ModelEntity
 					$result = $result . " " . $key . "=" . $att_value;
 				}
 			}
-			unset($value["attributes"]);
+			$value["attributes"] = null;
 		}
 		$result = $result . ">\n";
 		
