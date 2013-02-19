@@ -98,13 +98,13 @@ class ModelEntity
 		//attributes
 		if (isset($body["attribute"]))
 		{
-			if (is_array($body["attribute"]))
-			{
+			//if (is_array($body["attribute"]))
+			//{
 				foreach ($body["attribute"] as $key=>$value)
 				{
 					$result = $result . " " . $key . "=\"" . $value . "\"";
 				}
-			}
+			//}
 			unset($body["attribute"]);
 		}
 		$result = $result . ">\n";
