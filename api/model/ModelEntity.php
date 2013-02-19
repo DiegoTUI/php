@@ -119,8 +119,8 @@ class ModelEntity
 	 
 	 function xmlfy_element($element, $value)
 	 {
-		static $result = "<";
-		$result = $result . $element;
+		static $result = "";
+		$result = $result . "<" . $element;
 		if (isset($value["attribute"]))
 		{
 			if (is_array($value["attribute"]))
