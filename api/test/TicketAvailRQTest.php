@@ -103,6 +103,8 @@ class TicketAvailRQTest extends PHPUnit_Framework_TestCase
 		//Read all the attributes from the request
 		global $TICKET_AVAIL_RQ;
 		$TICKET_AVAIL_RQ->read_set_all();
+		$xml = $TICKET_AVAIL_RQ->get_xml();
+		$this->_common->debug ("Xml produced: " . $xml);
 	
 	}
 	
