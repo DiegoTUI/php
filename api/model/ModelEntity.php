@@ -162,7 +162,7 @@ class ModelEntity
 				$piece[$node_name] = array();
 			$piece = &$piece[$node_name];
 		}
-		$piece[$attribute->name] = (string)$attribute->value;
+		$piece[$attribute->name] = (string)($attribute->value);
 	 }
 	
 	/**
