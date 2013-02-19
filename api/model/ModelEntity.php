@@ -131,14 +131,23 @@ class ModelEntity
 		}
 		$result = $result . ">\n";
 		
-		foreach ($value as $key=>$inner_value)
+		if (is_array($value))
 		{
-			if (is_array($inner_value))
-				$this->xmlfy_element ($key, $inner_value);
-			else
-				$result = $result . "<" . $key . ">" . $inner_value . "</". $key . ">\n";
+			foreach ($value as $key=>$inner_value)
+			{
+				if (is_array($inner_value))
+					$this->xmlfy_element ($key, $inner_value);
+				else
+					$result = $result . "<" . $key . ">" . $inner_value . "</". $key . ">\n";
 			
+			}
 		}
+		else
+		{
+			$result = $result . $value . "</". $element . ">\n";
+		}
+		
+		return $result;
 	 }
 	 
 	 function process_attribute ($attribute, &$result)
