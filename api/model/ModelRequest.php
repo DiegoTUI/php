@@ -33,7 +33,7 @@ class ModelRequest
 		}
 		$result = (string)($this->variables[$key]);
 		unset($this->variables[$key]);
-		if (!$result)
+		if ($result === null)
 		{
 			UtilLogging::getInstance()->debug("read - result was read null for key: ". $key);
 			return $default;
