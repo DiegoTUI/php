@@ -118,15 +118,19 @@ class ModelEntity
 	 function xmlfy_element($element, $value)
 	 {
 		$result = "<" . $element;
-		if (is_array($value["attributes"]))
+		if (isset($value["attributes"]))
 		{
-			foreach ($value["attributes"] as $key=>$att_value)
+			if (is_array($value["attributes"]))
 			{
-				$result = $result . " " . $key . "=" . $att_value;
+				foreach ($value["attributes"] as $key=>$att_value)
+				{
+					$result = $result . " " . $key . "=" . $att_value;
+				}
 			}
+			unset($value["attributes"]);
 		}
 		$result = $result . ">\n";
-		unset($value["attributes"]);
+		
 		foreach ($value as $key=>$inner_value)
 		{
 			if (is_array($inner_value))
