@@ -23,8 +23,8 @@ $TICKET_AVAIL_RQ = new ModelEntity('TicketAvailRQ', array(
 	new Mandatory('AdultCount', 'ServiceOccupancy'),
 	new Mandatory('ChildCount', 'ServiceOccupancy'),
 	new Mandatory('code', 'Destination'),
-	new Optional('Value', 'Destination'),
-	new Optional('NameList', 'Destination'),
+	new Optional('Value', 'Destination'),	//REMOVE - only for test purposes
+	new Optional('NameList', 'Destination'),	//REMOVE - only for test purposes
 	new Mandatory('type', 'Destination', null, 'SIMPLE'),
 	new Mandatory('date', 'DateFrom'),
 	new Mandatory('date', 'DateTo')
