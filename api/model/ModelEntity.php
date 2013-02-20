@@ -143,7 +143,7 @@ class ModelEntity
 		}
 		if (equals($attribute->type, "list"))
 		{
-			UtilLogging::getInstance()->debug("process_attribute: the attribute: " . $attribute->id . " is a list. About to json_decode: "$attribute->value);
+			UtilLogging::getInstance()->debug("process_attribute: the attribute: " . $attribute->id . " is a list. About to json_decode: " . $attribute->value);
 			$piece[$attribute->name] = json_decode($attribute->value, TRUE);
 		}
 		else
