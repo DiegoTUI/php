@@ -197,7 +197,7 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 		$_REQUEST["ServiceOccupancy_AdultCount"] = "1";
 		$_REQUEST["ServiceOccupancy_ChildCount"] = "0";
 		$_REQUEST["Destination_code"] = "PMI";
-		$_REQUEST["Destination_NameList"] = '[{"Name":{"Value":"crap1","attribute":{"att1":"val1", "att2":"val2"},"Surname":"surname1"},{"Name":"crap2"},{"Name":"crap3"}]';
+		$_REQUEST["Destination_NameList"] = '[{"Name":{"Value":"crap1","attribute":{"att1":"val1", "att2":"val2"},"Surname":"surname1"}},{"Name":"crap2"},{"Name":"crap3"}]';
 		$_REQUEST["Destination_Value"] = 'Destination text';
 		$_REQUEST["Destination_Name_Fake"] = "Fake";
 		$_REQUEST["DateFrom_date"] = $this->today();
