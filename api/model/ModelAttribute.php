@@ -47,8 +47,10 @@ class Attribute
 		if ($type === null)	//"Autocalculate" the type based on the name
 		{
 			$this->type = 'attribute';
-			if (startsWithUpper($name))
+			if (startsWithUpper($this->name))
 				$this->type = 'element';
+			if (contains($this->name, "List"))
+				$this->type = 'list';
 		}
 		if (equals($this->type, "attribute"))
 			array_push($this->path, $this->type);
@@ -84,6 +86,13 @@ class Attribute
 		
 		UtilLogging::getInstance()->debug("read_set - Attribute: ". $this->id . " - value set: " . $this->value);
 	}
+	
+	/**
+	 * Read a value from a simpleXML object, set into the given object.
+	 */
+	 function read_set_simplexml ($simplexml)
+	 {
+	 }
 }
 
 /**

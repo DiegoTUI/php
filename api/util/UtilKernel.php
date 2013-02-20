@@ -141,6 +141,14 @@ function arrayInsert(&$haystack, $position, $needle)
 }
 
 /**
+ * Checks if an array is an associative array.
+ */
+ function isAssociative ($array)
+ {
+	return (bool)count(array_filter(array_keys($array), 'is_string'));
+ }
+
+/**
  * Convert an ISO date to a printable date.
  */
 function getPrintableDate($date)

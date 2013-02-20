@@ -110,8 +110,17 @@ class ModelEntity
 		{
 			if (is_array($value))
 			{
-				$this->xmlfy_element ($key, $value);
-				$result = $result . "</". $key . ">\n";
+				if (!isAssociative($value))	//it's a list
+				{
+					for ($i = 0; $i < count($value); $i++)
+						$this->xmlfy_element ($key, $value[$i]]);
+					$result = $result . "</". $key . ">\n";
+				}
+				else //it's not a list
+				{
+					$this->xmlfy_element ($key, $value);
+					$result = $result . "</". $key . ">\n";
+				}
 			}
 			else
 			{
@@ -132,7 +141,10 @@ class ModelEntity
 				$piece[$node_name] = array();
 			$piece = &$piece[$node_name];
 		}
-		$piece[$attribute->name] = $attribute->value;
+		if (equals($attribute->type, "list"))
+			$piece[$attribute->name] = json_decode($attribute->value, TRUE);
+		else
+			$piece[$attribute->name] = $attribute->value;
 	 }
 	
 	/**
@@ -144,7 +156,7 @@ class ModelEntity
 		{
 			page_error('Unknown attribute ' . $id . ' for ' . $this->name);
 		}
-		return $this->attributes[$key];
+		return $this->attributes[$id];
 	}
 
 	/**
@@ -160,7 +172,7 @@ class ModelEntity
 	 */
 	function set_value($id, $value)
 	{
-		$this->get_attribute($key)->value = $value;
+		$this->get_attribute($id)->value = $value;
 	}
 }
 
