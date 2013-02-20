@@ -111,7 +111,7 @@ class ModelEntity
 			//value
 			if (isset($body["Value"]))
 			{
-				self::$xml = self::$xml . $body["Value"];
+				self::$xml = self::$xml . $body["Value"] . "\n";
 				unset($body["Value"]);
 			}
 		}
