@@ -65,15 +65,16 @@ class ModelEntity
 	 function get_xml()
 	 {
 		global $CONFIG;
-		$xml = $CONFIG['xml_headers'][$this->name];	
+		self::$xml = "";
+		self::$xml = $CONFIG['xml_headers'][$this->name];	
 		
 		$xml_json = $this->get_xml_json();		
-		$xml = $xml . $this->xmlfy_element($this->name, $xml_json);
-		$xml = $xml . "</". $this->name . ">\n";
+		$this->xmlfy_element($this->name, $xml_json);
+		self::$xml = self::$xml . "</". $this->name . ">\n";
 		
-		$xml = $xml . $CONFIG['xml_footers'][$this->name];
+		self::$xml = self::$xml . $CONFIG['xml_footers'][$this->name];
 		
-		return $xml;
+		return self::$xml;
 	 }
 	 
 	 /**
@@ -94,18 +95,17 @@ class ModelEntity
 	 */
 	 function xmlfy_element($element, $body)
 	 {
-		static $result = "";
-		$result = $result . "<" . $element;
+		self::$xml = self::$xml . "<" . $element;
 		//attributes
 		if (isset($body["attribute"]))
 		{
 				foreach ($body["attribute"] as $key=>$value)
 				{
-					$result = $result . " " . $key . "=\"" . $value . "\"";
+					self::$xml = self::$xml . " " . $key . "=\"" . $value . "\"";
 				}
 			unset($body["attribute"]);
 		}
-		$result = $result . ">\n";
+		self::$xml = self::$xml . ">\n";
 		//elements
 		foreach ($body as $key=>$value)
 		{
@@ -115,20 +115,19 @@ class ModelEntity
 				{
 					for ($i = 0; $i < count($value); $i++)
 						$this->xmlfy_element ("crap", $value[$i]);
-					$result = $result . "</". $key . ">\n";
+					self::$xml = self::$xml . "</". $key . ">\n";
 				}
 				else //it's not a list
 				{
 					$this->xmlfy_element ($key, $value);
-					$result = $result . "</". $key . ">\n";
+					self::$xml = self::$xml . "</". $key . ">\n";
 				}
 			}
 			else
 			{
-				$result = $result . "<" . $key . ">" . $value . "</". $key . ">\n";
+				self::$xml = self::$xml . "<" . $key . ">" . $value . "</". $key . ">\n";
 			}
 		}
-		return $result;
 	 }
 	 
 	 function process_attribute ($attribute, &$result)
