@@ -14,7 +14,7 @@ class ModelEntity
 {
 	var $name;
 	var $attributes = array();
-	private static var $xml = "";
+	private static $xml = "";
 
 	/**
 	 * Construct a basic entity with name of the entity and its attributes.
