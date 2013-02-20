@@ -109,9 +109,10 @@ class ModelEntity
 			}
 			self::$xml = self::$xml . ">\n";
 			//value
-			if (isset($body["value"]))
+			if (isset($body["Value"]))
 			{
-				self::$xml = self::$xml . $body["value"];
+				self::$xml = self::$xml . $body["Value"];
+				unset($body["Value"]);
 			}
 		}
 		//elements
