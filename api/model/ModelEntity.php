@@ -113,8 +113,9 @@ class ModelEntity
 			{
 				if (!isAssociative($value))	//it's a list
 				{
+					self::$xml = self::$xml . "<". $key . ">\n";
 					for ($i = 0; $i < count($value); $i++)
-						$this->xmlfy_element ($key, $value[$i]);
+						$this->xmlfy_element (null, $value[$i]);
 					self::$xml = self::$xml . "</". $key . ">\n";
 				}
 				else //it's not a list
