@@ -242,7 +242,14 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 			$this->assertTrue (isset($piece[$node_name]), "Level " . $node_name . " not set in xml_json for attribute: " . $attribute->id);
 			$piece = &$piece[$node_name];
 		}
-		$this->assertTrue (equals($piece[$attribute->name], $attribute->value), "Value for attribute: " . $attribute->id . " not set properly in xml_json. It is " . $piece[$attribute->name] . " and should be " . $attribute->value);
+		if (equals($attribute->type,"list"))
+		{
+			$this->assertTrue (equals(json_encode($piece[$attribute->name]), $attribute->value), "Value for attribute: " . $attribute->id . " not set properly in xml_json. It is " . $piece[$attribute->name] . " and should be " . $attribute->value);
+		}
+		else
+		{
+			$this->assertTrue (equals($piece[$attribute->name], $attribute->value), "Value for attribute: " . $attribute->id . " not set properly in xml_json. It is " . $piece[$attribute->name] . " and should be " . $attribute->value);
+		}
 	}
 	
 	/**
