@@ -3,7 +3,7 @@
  * TicketAvailRequest.
  * (C) 2013 Tui Innovation.
  */
-
+ 
 include_once 'model/ModelEntity.php';
 include_once 'model/ModelAttribute.php';
 
