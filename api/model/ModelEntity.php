@@ -95,17 +95,20 @@ class ModelEntity
 	 */
 	 function xmlfy_element($element, $body)
 	 {
-		self::$xml = self::$xml . "<" . $element;
-		//attributes
-		if (isset($body["attribute"]))
+		if ($element !== null) //dont do this if its a list
 		{
+			self::$xml = self::$xml . "<" . $element;
+			//attributes
+			if (isset($body["attribute"]))
+			{
 				foreach ($body["attribute"] as $key=>$value)
 				{
 					self::$xml = self::$xml . " " . $key . "=\"" . $value . "\"";
 				}
 			unset($body["attribute"]);
+			}
+			self::$xml = self::$xml . ">\n";
 		}
-		self::$xml = self::$xml . ">\n";
 		//elements
 		foreach ($body as $key=>$value)
 		{
