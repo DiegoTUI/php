@@ -245,7 +245,7 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 		}
 		if (equals($attribute->type,"list"))
 		{
-			$this->assertTrue (equals(json_encode($piece[$attribute->name]), $attribute->value), "Value for attribute: " . $attribute->id . " not set properly in xml_json. It is " . $piece[$attribute->name] . " and should be " . $attribute->value);
+			$this->assertTrue (equals(json_encode($piece[$attribute->name]), $attribute->value), "Value for attribute: " . $attribute->id . " not set properly in xml_json. It is " . $piece[$attribute->name] . " and should be " . $attribute->value . "for name " . $attribute->name);
 		}
 		else
 		{
