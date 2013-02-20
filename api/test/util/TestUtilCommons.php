@@ -198,7 +198,7 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 		$_REQUEST["ServiceOccupancy_ChildCount"] = "0";
 		$_REQUEST["Destination_code"] = "PMI";
 		//$_REQUEST["Destination_NameList"] = '[{"Name":{"Value":"crap1","attribute":{"att1":"val1", "att2":"val2"},"Surname":"surname1"}},{"Name":"crap2"},{"Name":"crap3"}]';
-		$_REQUEST["Destination_NameList"] = '[{"Name":{"Value":"crap1","Surname":{"Lastname":"surname", "MaidenName":"Berta"}}},{"Name":"crap2"},{"Name":"crap3"}]';
+		$_REQUEST["Destination_NameList"] = '[{"Name":{"Value":"crap1","Surname":{"Lastname":"surname","MaidenName":"Berta"}}},{"Name":"crap2"},{"Name":"crap3"}]';
 		$_REQUEST["Destination_Value"] = 'Destination text';
 		$_REQUEST["Destination_Name_Fake"] = "Fake";
 		$_REQUEST["DateFrom_date"] = $this->today();
@@ -246,7 +246,7 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 		}
 		if (equals($attribute->type,"list"))
 		{
-			$this->assertTrue (equals(json_encode($piece[$attribute->name]), $attribute->value), "Value for attribute: " . $attribute->id . " not set properly in xml_json. It is " . $piece[$attribute->name] . " and should be " . $attribute->value . "for name " . $attribute->name);
+			$this->assertTrue (equals(json_encode($piece[$attribute->name]), $attribute->value), "Value for attribute: " . $attribute->id . " not set properly in xml_json. It is " . json_encode($piece[$attribute->name]) . " and should be " . $attribute->value . "for name " . $attribute->name);
 		}
 		else
 		{
