@@ -136,7 +136,7 @@ class ModelEntity
 		
 		foreach ($attribute->path as $node_name)
 		{
-			UtilLogging::getInstance()->debug('Node name process_attribute: ' . $node_name . ' for attribute: ' . $attribute->id . " i: " . 0 . " and path: " . implode(", ", $attribute->path));
+			//UtilLogging::getInstance()->debug('Node name process_attribute: ' . $node_name . ' for attribute: ' . $attribute->id . " i: " . 0 . " and path: " . implode(", ", $attribute->path));
 			if (!isset($piece[$node_name]))
 				$piece[$node_name] = array();
 			$piece = &$piece[$node_name];
