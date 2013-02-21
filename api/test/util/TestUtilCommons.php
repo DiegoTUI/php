@@ -252,6 +252,8 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 	 */
 	 public function checkAttributeInSimpleXML($attribute, $simpleXML)
 	 {
+		if (!$attribute->mandatory) return;
+		
 		$cursor = $simpleXML;
 		//check that the full path exists
 		foreach ($attribute->path as $node_name)
