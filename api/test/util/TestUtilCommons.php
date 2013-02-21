@@ -274,7 +274,13 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 		else if(equals($attribute->type, "element"))
 		{
 			if (equals($name, "Value"))
+			{
+				TestUtilLogging::getInstance()->debug("Attribute name: " . $name . " and value: " . $attribute->value);	
+				var_dump ($cursor)
+				$stringOutput = ob_get_clean();
+				TestUtilLogging::getInstance()->debug('cursor: ' . $stringOutput);
 				$this->assertEquals($attribute->value, $cursor[0]);
+			}
 			else
 				$this->assertEquals($attribute->value, $cursor->$name);
 		}
