@@ -242,7 +242,7 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 		var_dump ($sxe);
 		$stringOutput = ob_get_contents();
 		TestUtilLogging::getInstance()->debug('simpleXML: ' . $stringOutput);
-		ob_clean()
+		ob_clean();
 		foreach ($entity->attributes as $attribute)
 		{
 			$this->checkAttributeInSimpleXML($attribute, $sxe);
