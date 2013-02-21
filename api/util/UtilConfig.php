@@ -17,7 +17,7 @@ $CONFIG = array(
 	'test' => false,
 	
 	// URL to make the xml calls
-	'url' => 'http://212.170.239.71/appservices/ws/FrontendService',
+	'url' => 'http://212.170.239.71/appservices/http/FrontendService',
 	
 	//User and password authorized to make the calls
 	'user' => 'BDS',
