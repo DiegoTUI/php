@@ -148,6 +148,16 @@ function arrayInsert(&$haystack, $position, $needle)
 	return (bool)count(array_filter(array_keys($array), 'is_string'));
  }
 
+ /**
+  * Trims an xml and returns the content between the provided node (including the node.
+  */
+ function trimXML ($xml, $node)
+ {
+	$array = explode ($node, $xml);
+	return "<" . $node . $array[1] . $node . ">";
+ }
+
+ 
 /**
  * Convert an ISO date to a printable date.
  */
