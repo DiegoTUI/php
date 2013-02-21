@@ -144,6 +144,8 @@ class ModelEntity
 	 {
 		$piece = &$result;
 		
+		if ($attribute->value === null) return;
+		
 		foreach ($attribute->path as $node_name)
 		{
 			UtilLogging::getInstance()->debug('Node name process_attribute: ' . $node_name . ' for attribute: ' . $attribute->id . " i: " . 0 . " and path: " . implode(", ", $attribute->path));
