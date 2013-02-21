@@ -274,7 +274,7 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 		else if(equals($attribute->type, "element"))
 		{
 			if (equals($name, "Value"))
-				$this->assertEquals($attribute->value, $cursor);
+				$this->assertEquals($attribute->value, $cursor[0]);
 			else
 				$this->assertEquals($attribute->value, $cursor->$name);
 		}
