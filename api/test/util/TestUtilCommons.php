@@ -4,6 +4,7 @@ include_once 'test/util/TestUtilMongo.php';
 include_once 'test/util/TestUtilLogging.php';
 include_once 'util/UtilConstants.php';
 include_once 'util/UtilKernel.php';
+include_once 'util/UtilConfig.php';
 include_once 'controller/ControllerToken.php';
 include_once 'controller/ControllerUser.php';
 
@@ -187,11 +188,12 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 	 */
 	public function createTicketAvailRQ()
 	{
+		global $CONFIG;
 		$_REQUEST["echoToken"] = "DummyEchoToken";
 		$_REQUEST["sessionId"] = "DummySessionId";
 		$_REQUEST["Language"] = "ENG";
-		$_REQUEST["Credentials_User"] = "BSD";
-		$_REQUEST["Credentials_Password"] = "BSD";
+		$_REQUEST["Credentials_User"] = $CONFIG["user"];
+		$_REQUEST["Credentials_Password"] = $CONFIG["password"];
 		$_REQUEST["PaginationData_itemsPerPage"] = "25";
 		$_REQUEST["PaginationData_pageNumber"] = "1";
 		$_REQUEST["ServiceOccupancy_AdultCount"] = "1";
