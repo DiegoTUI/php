@@ -132,7 +132,8 @@ class TicketAvailRQTest extends PHPUnit_Framework_TestCase
 		//launch the request
 		global $CONFIG;
 		$request = new HTTPRequest($CONFIG->url, HTTP_METH_POST);
-		$request->setBody($xml);
+		$post = array($CONFIG['parameter_name'] => $xml);
+		$request->setBody(json_encode($post));
 		$request->send();
 		$response = $request->getResponseBody();
 		$this->_common->debug("ATLAS response :" . $response . "\n");
