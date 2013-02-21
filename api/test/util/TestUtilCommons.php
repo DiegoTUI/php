@@ -280,7 +280,7 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 				$stringOutput = ob_get_clean();
 				TestUtilLogging::getInstance()->debug('cursor: ' . $stringOutput);
 				TestUtilLogging::getInstance()->debug('cursor string: ' . (string)$cursor);
-				$this->assertEquals($attribute->value, $cursor);
+				$this->assertEquals($attribute->value, (string)$cursor);
 			}
 			else
 				$this->assertEquals($attribute->value, $cursor->$name);
