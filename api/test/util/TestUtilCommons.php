@@ -239,7 +239,7 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 	public function checkXMLWithEntity ($xml, $entity)
 	{
 		$sxe = new SimpleXMLElement ($xml);
-		var_dump ($sxe);
+		var_dump (get_object_vars($sxe));
 		$stringOutput = ob_get_contents();
 		TestUtilLogging::getInstance()->debug('simpleXML: ' . $stringOutput);
 		ob_clean();
