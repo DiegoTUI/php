@@ -267,9 +267,9 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 		}
 		//check that the value is correct
 		if(equals($attribute->type, "attribute"))
-			this->assertEquals($attribute->value, cursor[$attribute->name]);
+			$this->assertEquals($attribute->value, cursor[$attribute->name]);
 		else if(equals($attribute->type, "element"))
-			this->assertEquals($attribute->value, cursor->($attribute->name));
+			$this->assertEquals($attribute->value, cursor->($attribute->name));
 	 }
 	
 	/**
