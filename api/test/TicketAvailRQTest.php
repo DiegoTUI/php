@@ -117,7 +117,7 @@ class TicketAvailRQTest extends PHPUnit_Framework_TestCase
 	 * Test calling the server and getting the results of the query
 	 * @return void
 	 */
-	public function testGetXml()
+	public function testCallAtlas()
 	{
 	
 	}
