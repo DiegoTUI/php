@@ -42,7 +42,7 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 		}
 		
 		$stringOutput = ob_get_contents();
-		self::debug('stringOutput: ' . $stringOutput);
+		TestUtilLogging::getInstance()->debug('stringOutput: ' . $stringOutput);
 		$stringArray = json_decode($stringOutput, true);
 
 		//check that a token is returned
@@ -54,7 +54,7 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 
 		//check that the token was written in the db
 		$tokenObject = $this->_tokensCollection->findOne(array('token' => $token));
-		self::debug('Querying tokens for token: [' . $token . ']');
+		TestUtilLogging::getInstance()->debug('Querying tokens for token: [' . $token . ']');
 		$this->assertTrue($tokenObject != NULL, "token not saved in the database");
 		
 		//clean the buffer for next test
@@ -91,7 +91,7 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 	{
 		ControllerUser::addUser(TUI_TEST_ADMIN_TOKEN);
 		$stringOutput = ob_get_contents();
-		self::debug('stringOutput: ' . $stringOutput);
+		TestUtilLogging::getInstance()->debug('stringOutput: ' . $stringOutput);
 		$stringArray = json_decode($stringOutput, true);
 
 		//check that a userId is returned
@@ -103,7 +103,7 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 
 		//check that the user was written in the db
 		$user = $this->_usersCollection->findOne(array("userId" => $userId));
-		self::debug('Querying users for userId: [' . $userId . ']');
+		TestUtilLogging::getInstance()->debug('Querying users for userId: [' . $userId . ']');
 		$this->assertTrue($user != NULL, "user not saved in the database");
 		
 		//check that the email in the db is correct
@@ -132,7 +132,7 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 		
 		//Controller_Rest_User::removeUser(KIMIA_TEST_ADMIN_TOKEN);
 		$stringOutput = ob_get_contents();
-		self::debug('stringOutput: ' . $stringOutput);
+		TestUtilLogging::getInstance()->debug('stringOutput: ' . $stringOutput);
 		$stringArray = json_decode($stringOutput, true);
 
 		//check that a userId is returned
@@ -144,7 +144,7 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 
 		//check that the user was deleted from the db
 		$user = $this->_usersCollection->findOne(array("userId" => $userId));
-		self::debug('Querying users for userId: [' . $userId . ']');
+		TestUtilLogging::getInstance()->debug('Querying users for userId: [' . $userId . ']');
 		$this->assertTrue($user == NULL, "user not properly deleted from the database");
 		
 		//clean the buffer for next test
@@ -161,7 +161,7 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 		
 		$user = $this->_usersCollection->findOne(array("email" => $_REQUEST["email"]));
 
-		self::debug('Querying users for email: [' . $_REQUEST["email"] . ']');
+		TestUtilLogging::getInstance()->debug('Querying users for email: [' . $_REQUEST["email"] . ']');
 
 		if ($user)
 			$userId = $user['userId'];	
@@ -224,7 +224,7 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 	 */
 	public function checkAttribute($attribute, $value)
 	{
-		self::debug('Attribute about to check: ' . $attribute->id . " against value: " . $value);
+		TestUtilLogging::getInstance()->debug('Attribute about to check: ' . $attribute->id . " against value: " . $value);
 		if (isset($_REQUEST[$attribute->id]))
 		{
 			$this->assertTrue(equals($_REQUEST[$attribute->id], $value), "wrong value for attribute: " . $attribute->id . " - it is " . $attribute->value . " and should be: " . $value);
@@ -239,6 +239,10 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 	public function checkXMLWithEntity ($xml, $entity)
 	{
 		$sxe = new SimpleXMLElement ($xml);
+		var_dump ($sxe);
+		$stringOutput = ob_get_contents();
+		TestUtilLogging::getInstance()->debug('simpleXML: ' . $stringOutput);
+		ob_clean()
 		foreach ($entity->attributes as $attribute)
 		{
 			$this->checkAttributeInSimpleXML($attribute, $sxe);
@@ -257,7 +261,7 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 		{
 			if (!equals($node_name,"attribute"))
 			{
-				$this->assertTrue(isset($cursor->$node_name), "checkAttributeInSimpleXML - Node: " . $node_name . "does not exist in xml provided");
+				$this->assertTrue(isset($cursor->$node_name), "checkAttributeInSimpleXML - Node: " . $node_name . " does not exist in xml provided");
 				$cursor = $cursor->$node_name;
 			}
 		}
