@@ -133,6 +133,8 @@ class TicketAvailRQTest extends PHPUnit_Framework_TestCase
 		global $CONFIG;
 		$request = new HTTPRequest($CONFIG->url, HTTP_METH_POST);
 		$post = array($CONFIG['parameter_name'] => $xml);
+		$post_body = json_encode($post);
+		$this->_common->debug("POST_body :" . $post_body . "\n");
 		$request->setBody(json_encode($post));
 		$request->send();
 		$response = $request->getResponseBody();
