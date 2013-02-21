@@ -107,7 +107,9 @@ class TicketAvailRQTest extends PHPUnit_Framework_TestCase
 		$TICKET_AVAIL_RQ->read_set_all();
 		$xml = $TICKET_AVAIL_RQ->get_xml();
 		$this->_common->debug ("Xml produced: " . $xml);
-		$this->_common->checkXMLWithEntity (trimXML($xml, $TICKET_AVAIL_RQ->name) , $TICKET_AVAIL_RQ);
+		$trimmed_xml = trimXML($xml, $TICKET_AVAIL_RQ->name);
+		$this->_common->debug ("TrimmedXml produced: " . $trimmed_xml);
+		$this->_common->checkXMLWithEntity (trimXML($trimmed_xml , $TICKET_AVAIL_RQ);
 		ob_clean();
 	}
 	
