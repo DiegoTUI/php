@@ -233,6 +233,37 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 	}
 	
 	/**
+	 * checks that all the attributes in the entity are included in the xml
+	 * @return void
+	 */
+	public function checkXMLWithEntity ($xml, $entity)
+	{
+		$sxe = new SimpleXMLElement ($xml);
+		foreach ($entity->attributes as $attribute)
+		{
+			$this->checkAttributeInSimpleXML($attribute, $sxe);
+		}
+	}
+	
+	/**
+	 * checks that a certain attribute included in the provided SimpleXML
+	 * @return void
+	 */
+	 public function checkAttributeInSimpleXML($attribute, $simpleXML)
+	 {
+		$cursor = $simpleXML;
+		//check that the full path exists
+		foreach ($attribute->path as $node_name)
+		{
+			if (!equals($node_name,"attribute"))
+			{
+				$this->assertTrue(isset($cursor->$node_name), "checkAttributeInSimpleXML - Node: " . $node_name . "does not exist in xml provided");
+				$cursor = $cursor->$node_name;
+			}
+		}
+	 }
+	
+	/**
 	 * check if an attribute was correctly translated to xml_json
 	 * @return void
 	 */

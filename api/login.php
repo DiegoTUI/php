@@ -1,7 +1,7 @@
 <?php
 
-include_once './controller/Token.php';
+include_once './controller/ControllerToken.php';
 
-Token::login();
+ControllerToken::login();
 
 ?>
