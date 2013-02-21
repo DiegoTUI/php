@@ -199,7 +199,7 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 		$_REQUEST["ServiceOccupancy_AdultCount"] = "1";
 		$_REQUEST["ServiceOccupancy_ChildCount"] = "0";
 		$_REQUEST["Destination_code"] = "PMI";
-		$_REQUEST["Destination_Value"] = "Jaaarrrl";
+		//$_REQUEST["Destination_Value"] = "Jaaarrrl";
 		$_REQUEST["Destination_Name_Fake"] = "Fake";
 		$_REQUEST["DateFrom_date"] = $this->tomorrow();
 		$_REQUEST["DateTo_date"] = $this->day_after_tomorrow();
