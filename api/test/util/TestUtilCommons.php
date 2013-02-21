@@ -198,9 +198,8 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 		$_REQUEST["ServiceOccupancy_ChildCount"] = "0";
 		$_REQUEST["Destination_code"] = "PMI";
 		$_REQUEST["Destination_Name_Fake"] = "Fake";
-		$_REQUEST["DateFrom_date"] = $this->today();
-		$_REQUEST["DateTo_date"] = $this->tomorrow();
-		
+		$_REQUEST["DateFrom_date"] = $this->tomorrow();
+		$_REQUEST["DateTo_date"] = $this->day_after_tomorrow();
 	}
 	
 	/**
@@ -274,11 +273,6 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 		{
 			if (equals($name, "Value"))
 			{
-				TestUtilLogging::getInstance()->debug("Attribute name: " . $name . " and value: " . $attribute->value);	
-				var_dump ($cursor[0]);
-				$stringOutput = ob_get_clean();
-				TestUtilLogging::getInstance()->debug('cursor: ' . $stringOutput);
-				TestUtilLogging::getInstance()->debug('cursor string: ' . (string)$cursor);
 				$this->assertEquals($attribute->value, (string)$cursor);
 			}
 			else
@@ -324,6 +318,15 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 	public function tomorrow()
 	{
 		return date("Ymd", time() + 86400);
+	}
+	
+	/**
+	 * returns the day after tomorrow's date in format "yyyymmdd"
+	 * @return void
+	 */
+	public function day_after_tomorrow()
+	{
+		return date("Ymd", time() + 172800);
 	}
 }
 
