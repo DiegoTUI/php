@@ -119,7 +119,23 @@ class TicketAvailRQTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testCallAtlas()
 	{
-	
+		$sizeRequest = count($_REQUEST);
+		//Create the request in the global variable $REQUEST
+		global $REQUEST;
+		$REQUEST = new ModelRequest($_REQUEST);
+		//Check that it was created OK
+		$this->assertEquals(count($REQUEST->variables),$sizeRequest);
+		//Read all the attributes from the request
+		global $TICKET_AVAIL_RQ;
+		$TICKET_AVAIL_RQ->read_set_all();
+		$xml = $TICKET_AVAIL_RQ->get_xml();
+		//launch the request
+		global $CONFIG;
+		$request = new HTTPRequest($CONFIG->url, HTTP_METH_POST);
+		$request->setBody($xml);
+		$request->send();
+		$response = $request->getResponseBody();
+		$this->_common->debug("ATLAS response :" . $response . "\n");
 	}
 	
 	/**

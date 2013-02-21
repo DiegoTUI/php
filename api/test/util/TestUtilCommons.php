@@ -190,8 +190,8 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 		$_REQUEST["echoToken"] = "DummyEchoToken";
 		$_REQUEST["sessionId"] = "DummySessionId";
 		$_REQUEST["Language"] = "ENG";
-		$_REQUEST["Credentials_User"] = "ISLAS";
-		$_REQUEST["Credentials_Password"] = "ISLAS";
+		$_REQUEST["Credentials_User"] = "BSD";
+		$_REQUEST["Credentials_Password"] = "BSD";
 		$_REQUEST["PaginationData_itemsPerPage"] = "25";
 		$_REQUEST["PaginationData_pageNumber"] = "1";
 		$_REQUEST["ServiceOccupancy_AdultCount"] = "1";
