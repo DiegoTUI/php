@@ -153,8 +153,9 @@ function arrayInsert(&$haystack, $position, $needle)
   */
  function trimXML ($xml, $node)
  {
-	$array = explode ($node, $xml);
-	return "<" . $node . $array[1] . $node . ">";
+	$array1 = explode ("<" . $node, $xml);
+	$array2 = explode ($node . ">", $array1[1]);
+	return "<" . $node . $array2[0] . $node . ">";
  }
 
  
