@@ -267,8 +267,10 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 		}
 		//check that the value is correct
 		$name = $attribute->name;
-		if(equals($attribute->type, "attribute"))
+		if(equals($attribute->type, "attribute") && $attribute->checkable)
+		{
 			$this->assertEquals($attribute->value, $cursor[$attribute->name]);
+		}
 		else if(equals($attribute->type, "element"))
 			$this->assertEquals($attribute->value, $cursor->$name);
 	 }

@@ -27,6 +27,7 @@ class Attribute
 	var $mandatory = false;
 	var $writeable = true;
 	var $visible = true;
+	var $checkable = true; //for testing purposes
 
 	/**
 	 * Construct a new attribute.
@@ -59,6 +60,9 @@ class Attribute
 			$this->writeable = false;
 			
 		$this->value = $value;
+		
+		if (contains($this->name,"xmlns") || contains($this->name,"xsi"))
+			$this->checkable = false;
 		
 		UtilLogging::getInstance()->debug("Attribute constructed - id: " . $this->id . " - type: " . $this->type . " - path: " . implode(", ", $this->path));
 	}
