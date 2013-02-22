@@ -131,7 +131,7 @@ class TicketAvailRQTest extends PHPUnit_Framework_TestCase
 		$xml = $TICKET_AVAIL_RQ->get_xml();
 		//launch the request
 		global $CONFIG;
-		$request = new HTTPRequest("http://www.google.es", HTTP_METH_GET);
+		$request = new HTTPRequest("http://212.170.239.71/appservices/http/FrontendService", HTTP_METH_GET);
 		$post = array($CONFIG['parameter_name'] => $xml);
 		$post_body = json_encode($post);
 		$this->_common->debug("POST_body :" . $post_body . "\n");
