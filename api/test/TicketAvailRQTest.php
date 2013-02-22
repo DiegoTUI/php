@@ -138,6 +138,8 @@ class TicketAvailRQTest extends PHPUnit_Framework_TestCase
 		$request->setBody(json_encode($post));
 		$request->setHeaders(array("Host" => "212.170.239.71",
 									"X-Real-IP" => "54.246.80.107",
+									"X-Forwarded-For" => "54.246.80.107",
+									"Connection" => "close",
 									"User-Agent" => "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:19.0) Gecko/20100101 Firefox/19.0",
 									"Accept" => "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
 									"Accept-Language" => "en-US,en;q=0.5",
