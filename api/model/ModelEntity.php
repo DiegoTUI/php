@@ -66,7 +66,7 @@ class ModelEntity
 	 {
 		global $CONFIG;
 		self::$xml = "";
-		$headers_key = $this->name . "_noSOAP";
+		$headers_key = $this->name;// . "_noSOAP";
 		self::$xml = $CONFIG['xml_headers'][$headers_key];
 		
 		$xml_json = $this->get_xml_json();		
@@ -75,7 +75,7 @@ class ModelEntity
 		
 		self::$xml = self::$xml . $CONFIG['xml_footers'][$headers_key];
 		
-		return self::$xml;
+		return utf8_encode(self::$xml);
 	 }
 	 
 	 /**
