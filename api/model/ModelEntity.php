@@ -66,8 +66,8 @@ class ModelEntity
 	 {
 		global $CONFIG;
 		self::$xml = "";
-		$headers_key = $this->name + "_noSOAP";
-		self::$xml = $CONFIG['xml_headers'][$headers_key];	
+		$headers_key = $this->name . "_noSOAP";
+		self::$xml = $CONFIG['xml_headers'][$headers_key];
 		
 		$xml_json = $this->get_xml_json();		
 		$this->xmlfy_element($this->name, $xml_json);
