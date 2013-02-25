@@ -66,13 +66,14 @@ class ModelEntity
 	 {
 		global $CONFIG;
 		self::$xml = "";
-		self::$xml = $CONFIG['xml_headers'][$this->name + "_noSOAP"];	
+		$headers_key = $this->name + "_noSOAP";
+		self::$xml = $CONFIG['xml_headers'][$headers_key];	
 		
 		$xml_json = $this->get_xml_json();		
 		$this->xmlfy_element($this->name, $xml_json);
 		self::$xml = self::$xml . "</". $this->name . ">\n";
 		
-		self::$xml = self::$xml . $CONFIG['xml_footers'][$this->name + "_noSOAP"];
+		self::$xml = self::$xml . $CONFIG['xml_footers'][$headers_key];
 		
 		return self::$xml;
 	 }
