@@ -144,7 +144,6 @@ class TicketAvailRQTest extends PHPUnit_Framework_TestCase
 		//Create a simpleXML with the result
 		$ticketAvailRS = new SimpleXMLElement ($response);
 		//check Audit data
-		$this->_common->checkElementsNotNull($ticketAvailRS, array("AuditData"));
 		$this->_common->checkElementsNotNull($ticketAvailRS->AuditData, array("ProcessTime", "Timestamp", "RequestHost", "ServerName", "ServerId", "SchemaRelease", "HydraCoreRelease", "HydraEnumerationsRelease", "MerlinRelease"));
 		//check first serviceTicket
 		$serviceTicket = $ticketAvailRS->serviceTicket[0];
