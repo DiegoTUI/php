@@ -138,11 +138,11 @@ class TicketAvailRQTest extends PHPUnit_Framework_TestCase
 		$this->_common->debug("POST_body :" . $xml . "\n");
 		//$request->setBody($post_body);
 		$request->setBody($xml);
-		/*$request->setPostFields($post);
+		/*$request->setPostFields($post);*/
 		$request->setHeaders(array("Accept" => "text/html,application/xhtml+xml,application/xml;q=0.9,;q=0.8",
 									"Accept-Encoding" => "gzip, deflate",
 									"Content-Type" => "text/plain; charset=UTF-8"));
-		var_dump($request->getHeaders());
+		/*var_dump($request->getHeaders());
 		$stringOutput = ob_get_clean();
 		$this->_common->debug("Headers :" . $stringOutput . "\n");
 		$this->_common->debug("Read POST fields: " . prettyPrintJSON(json_encode($request->getPostFields())));*/
