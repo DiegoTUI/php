@@ -143,7 +143,7 @@ class TicketAvailRQTest extends PHPUnit_Framework_TestCase
 		var_dump($request->getHeaders());
 		$stringOutput = ob_get_clean();
 		$this->_common->debug("Headers :" . $stringOutput . "\n");
-		$this->_common->debug("Read POST fields: " . prettyPrintJSON(json_encode($request->getPostFields)));
+		$this->_common->debug("Read POST fields: " . prettyPrintJSON(json_encode($request->getPostFields())));
 		$request->send();
 		$response = $request->getResponseBody();
 		$this->_common->debug("ATLAS response :" . $response . "\n");
