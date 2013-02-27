@@ -321,7 +321,7 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 	 */
 	public function checkElementNotNull($simpleXML, $element)
 	{
-		$this->assertTrue ($simpleXML->'$element' !== null, "Element " . $element . " does not exixt within XML " . $simpleXML->getName());
+		$this->assertTrue ($simpleXML->$element !== null, "Element " . $element . " does not exixt within XML " . $simpleXML->getName());
 	}
 	/**
 	 * returns today's date in format "yyyymmdd"
