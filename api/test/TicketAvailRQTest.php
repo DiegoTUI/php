@@ -144,6 +144,8 @@ class TicketAvailRQTest extends PHPUnit_Framework_TestCase
 		//Create a simpleXML with the result
 		$ticketAvailRS = new SimpleXMLElement ($response);
 		$this->_common->checkAuditData ($ticketAvailRS);
+		$serviceTicket = $ticketAvailRS->serviceTicket[0];
+		$this->_common->checkServiceTicket($serviceTicket);
 	}
 	
 	/**

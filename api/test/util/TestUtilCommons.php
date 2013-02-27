@@ -311,17 +311,27 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 	 */
 	 public function checkAuditData ($ticketAvailRS)
 	 {
-		$this->checkElementNotNull($ticketAvailRS, "AuditData");
+		$this->checkElementsNotNull($ticketAvailRS, array("AuditData"));
+		$this->checkElementNotNull($ticketAvailRS->AuditData, array("ProcessTime", "Timestamp", "RequestHost", "ServerName", "ServerId", "SchemaRelease", "HydraCoreRelease", "HydraEnumerationsRelease", "MerlinRelease"));
+	 }
+	 
+	 /**
+	 * check if the audit data returned by ATLAS is minimally consistent
+	 * @return void
+	 */
+	 public function checkServiceTicket ($serviceTicket)
+	 {
 		
 	 }
 	 
 	 /**
-	 * check if an element exists in a certain simpleXML
+	 * checks if an array of elements exist individually in a certain simpleXML
 	 * @return void
 	 */
-	public function checkElementNotNull($simpleXML, $element)
+	public function checkElementsNotNull($simpleXML, $elements)
 	{
-		$this->assertTrue ($simpleXML->$element !== null, "Element " . $element . " does not exixt within XML " . $simpleXML->getName());
+		foreach ($elements as $element)
+			$this->assertTrue ($simpleXML->$element !== null, "Element " . $element . " does not exixt within XML " . $simpleXML->getName());
 	}
 	/**
 	 * returns today's date in format "yyyymmdd"
