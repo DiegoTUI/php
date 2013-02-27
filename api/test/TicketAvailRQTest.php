@@ -136,7 +136,8 @@ class TicketAvailRQTest extends PHPUnit_Framework_TestCase
 		$post_body = json_encode($post);
 		$this->_common->debug("POST_body :" . $post_body . "\n");
 		//$request->setBody($post_body);
-		$request->setPostFields($post);
+		$request->setBody($xml);
+		//$request->setPostFields($post);
 		$request->setHeaders(array("Accept" => "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
 									"Accept-Encoding" => "gzip, deflate",
 									"Content-Type" => "text/plain; charset=UTF-8"));
