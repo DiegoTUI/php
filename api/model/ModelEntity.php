@@ -65,7 +65,7 @@ class ModelEntity
 	 function get_xml()
 	 {
 		global $CONFIG;
-		self::$xml = "";
+		self::$xml = '<?xml version="1.0" ?>';
 		$headers_key = $this->name . "_noSOAPkk";
 		self::$xml = $CONFIG['xml_headers'][$headers_key];
 		
