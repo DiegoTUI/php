@@ -26,7 +26,7 @@ $CONFIG = array(
 	'user' => 'BDS',
 	'password' => 'BDS',
 	
-	//name of the parameter in the POST call
+	/*name of the parameter in the POST call
 	'parameter_name' => 'xml_request',
 	
 	//xml headers and footers
@@ -44,7 +44,7 @@ $CONFIG = array(
 			'</soapenv:Body>' . "\n" . 
 			'</soapenv:Envelope>',
 			
-		'TicketAvailRQ_noSOAP' => '</hb:getTicketAvail>')
+		'TicketAvailRQ_noSOAP' => '</hb:getTicketAvail>')*/
 );
 
 date_default_timezone_set('UTC');

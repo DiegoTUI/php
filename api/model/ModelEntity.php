@@ -65,15 +65,11 @@ class ModelEntity
 	 function get_xml()
 	 {
 		global $CONFIG;
-		self::$xml = "";/* '<?xml version="1.0" ?>';*/
-		//$headers_key = $this->name . "_none";
-		//self::$xml = self::$xml . $CONFIG['xml_headers'][$headers_key];
+		self::$xml = "";
 		
 		$xml_json = $this->get_xml_json();		
 		$this->xmlfy_element($this->name, $xml_json);
 		self::$xml = self::$xml . "</". $this->name . ">\n";
-		
-		//self::$xml = self::$xml . $CONFIG['xml_footers'][$headers_key];
 		
 		return utf8_encode(self::$xml);
 	 }
