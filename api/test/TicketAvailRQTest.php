@@ -143,12 +143,12 @@ class TicketAvailRQTest extends PHPUnit_Framework_TestCase
 		$this->_common->debug("ATLAS response :" . $response . "\n");
 		//Create a simpleXML with the result
 		$ticketAvailRS = new SimpleXMLElement ($response);
-		////check Audit data
+		//check Audit data
 		$this->_common->checkElementsNotNull($ticketAvailRS, array("AuditData"));
 		$this->_common->checkElementsNotNull($ticketAvailRS->AuditData, array("ProcessTime", "Timestamp", "RequestHost", "ServerName", "ServerId", "SchemaRelease", "HydraCoreRelease", "HydraEnumerationsRelease", "MerlinRelease"));
-		//$this->_common->checkAuditData ($ticketAvailRS);
+		//check first serviceTicket
 		$serviceTicket = $ticketAvailRS->serviceTicket[0];
-		//$this->_common->checkServiceTicket($serviceTicket);
+		$this->_common->checkElementsNotNull($ticketAvailRS->AuditData, array("DateFrom", "DateTo", "Currency", "TicketInfo", "AvailableModality", "Paxes"));
 	}
 	
 	/**

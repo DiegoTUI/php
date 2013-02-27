@@ -304,25 +304,6 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 			$this->assertTrue (equals($piece[$attribute->name], $attribute->value), "Value for attribute: " . $attribute->id . " not set properly in xml_json. It is " . $piece[$attribute->name] . " and should be " . $attribute->value);
 		}
 	}
-	
-	/**
-	 * check if the audit data returned by ATLAS is minimally consistent
-	 * @return void
-	 */
-	 public function checkAuditData ($ticketAvailRS)
-	 {
-		$this->checkElementsNotNull($ticketAvailRS, array("AuditData"));
-		$this->checkElementsNotNull($ticketAvailRS->AuditData, array("ProcessTime", "Timestamp", "RequestHost", "ServerName", "ServerId", "SchemaRelease", "HydraCoreRelease", "HydraEnumerationsRelease", "MerlinRelease"));
-	 }
-	 
-	 /**
-	 * check if the audit data returned by ATLAS is minimally consistent
-	 * @return void
-	 */
-	 public function checkServiceTicket ($serviceTicket)
-	 {
-		
-	 }
 	 
 	 /**
 	 * checks if an array of elements exist individually in a certain simpleXML
