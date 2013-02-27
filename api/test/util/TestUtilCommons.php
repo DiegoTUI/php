@@ -314,7 +314,7 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 		foreach ($elements as $element)
 		{
 			TestUtilLogging::getInstance()->debug('Processing element: ' . $element . " of value " . $simpleXML->$element);
-			$this->assertTrue ($simpleXML->$element != null, "Element " . $element . " does not exixt within XML " . $simpleXML->getName());
+			$this->assertTrue (is_string($simpleXML->$element), "Element " . $element . " does not exixt within XML " . $simpleXML->getName());
 		}
 	}
 	/**
