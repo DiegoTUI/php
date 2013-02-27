@@ -65,8 +65,8 @@ class ModelEntity
 	 function get_xml()
 	 {
 		global $CONFIG;
-		self::$xml = '<?xml version="1.0" ?>';
-		$headers_key = $this->name . "_noSOAPkk";
+		self::$xml = "";/* '<?xml version="1.0" ?>';*/
+		$headers_key = $this->name;// . "_noSOAPkk";
 		self::$xml = self::$xml . $CONFIG['xml_headers'][$headers_key];
 		
 		$xml_json = $this->get_xml_json();		
