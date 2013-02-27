@@ -311,7 +311,7 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 	 */
 	 public function checkAuditData ($ticketAvailRS)
 	 {
-		checkElementNotNull("AuditData");
+		checkElementNotNull($ticketAvailRS, "AuditData");
 		
 	 }
 	 
