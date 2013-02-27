@@ -148,7 +148,7 @@ class TicketAvailRQTest extends PHPUnit_Framework_TestCase
 		$this->_common->checkElementsNotNull($ticketAvailRS->AuditData, array("ProcessTime", "Timestamp", "RequestHost", "ServerName", "ServerId", "SchemaRelease", "HydraCoreRelease", "HydraEnumerationsRelease", "MerlinRelease"));
 		//check first serviceTicket
 		$serviceTicket = $ticketAvailRS->serviceTicket[0];
-		$this->_common->checkElementsNotNull($ticketAvailRS->AuditData, array("DateFrom", "DateTo", "Currency", "TicketInfo", "AvailableModality", "Paxes"));
+		$this->_common->checkElementsNotNull($ticketAvailRS->AuditData, array("DateFrom", "DateTo", "Currency", "TicketInfo", "AvailableModality", "Paxees"));
 	}
 	
 	/**
