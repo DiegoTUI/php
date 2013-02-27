@@ -312,7 +312,7 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 	 public function checkAuditData ($ticketAvailRS)
 	 {
 		$this->checkElementsNotNull($ticketAvailRS, array("AuditData"));
-		$this->checkElementNotNull($ticketAvailRS->AuditData, array("ProcessTime", "Timestamp", "RequestHost", "ServerName", "ServerId", "SchemaRelease", "HydraCoreRelease", "HydraEnumerationsRelease", "MerlinRelease"));
+		$this->checkElementsNotNull($ticketAvailRS->AuditData, array("ProcessTime", "Timestamp", "RequestHost", "ServerName", "ServerId", "SchemaRelease", "HydraCoreRelease", "HydraEnumerationsRelease", "MerlinRelease"));
 	 }
 	 
 	 /**
