@@ -149,7 +149,7 @@ class TicketAvailRQTest extends PHPUnit_Framework_TestCase
 		$serviceTicket = $ticketAvailRS->ServiceTicket[0];
 		foreach ($serviceTicket->children() as $child)
 			$this->_common->debug("Child of ServiceTicket :" . $child->getName() . "\n");
-		$this->_common->checkElementsNotNull($ticketAvailRS, array("DateFrom", "DateTo", "Currency", "TicketInfo", "AvailableModality", "Paxees"));
+		$this->_common->checkElementsNotNull($serviceTicket, array("DateFrom", "DateTo", "Currency", "TicketInfo", "AvailableModality", "Paxees"));
 	}
 	
 	/**
