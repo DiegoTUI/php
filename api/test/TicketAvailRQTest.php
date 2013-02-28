@@ -146,8 +146,8 @@ class TicketAvailRQTest extends PHPUnit_Framework_TestCase
 		//check Audit data
 		$this->_common->checkElementsNotNull($ticketAvailRS->AuditData, array("ProcessTime", "Timestamp", "RequestHost", "ServerName", "ServerId", "SchemaRelease", "HydraCoreRelease", "HydraEnumerationsRelease", "MerlinRelease"));
 		//check first serviceTicket
-		$serviceTicket = $ticketAvailRS->serviceTicket[0];
-		foreach ($ticketAvailRS->children() as $child)
+		$serviceTicket = $ticketAvailRS->ServiceTicket[0];
+		foreach ($serviceTicket->children() as $child)
 			$this->_common->debug("Child of ServiceTicket :" . $child->getName() . "\n");
 		$this->_common->checkElementsNotNull($ticketAvailRS, array("DateFrom", "DateTo", "Currency", "TicketInfo", "AvailableModality", "Paxees"));
 	}
