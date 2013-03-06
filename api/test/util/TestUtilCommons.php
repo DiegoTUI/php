@@ -206,6 +206,21 @@ class TestUtilCommons extends PHPUnit_Framework_TestCase
 	}
 	
 	/**
+	 * creates test ticket avail rq
+	 * @return void
+	 */
+	public function createHotelListRQ()
+	{
+		global $CONFIG;
+		$_REQUEST["echoToken"] = "DummyEchoToken";
+		$_REQUEST["Language"] = "ENG";
+		$_REQUEST["Credentials_User"] = $CONFIG["user"];
+		$_REQUEST["Credentials_Password"] = $CONFIG["password"];
+		$_REQUEST["Destination_code"] = "PMI";
+		$_REQUEST["Destination_Name_Fake"] = "Fake";
+	}
+	
+	/**
 	 * reset REQUEST variable
 	 * @return void
 	 */
