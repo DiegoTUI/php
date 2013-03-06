@@ -139,7 +139,7 @@ class TicketAvailRQTest extends PHPUnit_Framework_TestCase
 									"Accept-Encoding" => "gzip, deflate",
 									"Content-Type" => "text/plain; charset=UTF-8"));
 		$request->send();
-		//$response = $request->getResponseBody();
+		$response = $request->getResponseBody();
 		//$this->_common->debug("ATLAS response :" . $response . "\n");
 		//Create a simpleXML with the result
 		$ticketAvailRS = new SimpleXMLElement ($response);
