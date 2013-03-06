@@ -5,8 +5,6 @@ include_once 'test/util/TestUtilLogging.php';
 include_once 'util/UtilConstants.php';
 include_once 'util/UtilKernel.php';
 include_once 'util/UtilConfig.php';
-include_once 'controller/ControllerToken.php';
-include_once 'controller/ControllerUser.php';
 
 class TestUtilCommons extends PHPUnit_Framework_TestCase
 {
