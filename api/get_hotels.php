@@ -11,7 +11,7 @@ while ($cursor->hasNext())
 {
 	array_push($return, $cursor->getNext());
 }
-
+var_dump ($return);
 return json_encode($return);
 
 ?>
