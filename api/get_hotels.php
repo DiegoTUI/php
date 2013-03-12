@@ -1,6 +1,6 @@
 <?php
 
-include_once './util/UtilMongo.php'
+include_once './util/UtilMongo.php';
 
 $query = array ("location.code" => "PMI",
 				"category" => "5EST");
