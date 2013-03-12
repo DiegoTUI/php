@@ -9,9 +9,10 @@ $return = array();
 
 while ($cursor->hasNext())
 {
-	array_push($return, $cursor->getNext());
+	$result = $cursor->getNext();
+	array_push($return, $result);
 }
-var_dump ($return);
-return json_encode($return);
+
+echo json_encode($return);
 
 ?>
