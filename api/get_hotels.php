@@ -9,7 +9,7 @@ $return = array();
 
 while ($cursor->hasNext())
 {
-	array_push($return, $cursor.getNext());
+	array_push($return, $cursor->getNext());
 }
 
 return json_encode($return);
