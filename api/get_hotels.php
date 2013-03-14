@@ -18,16 +18,12 @@ $latdelta = array_key_exists("latitudeDelta", $params) ? (double)($params["latit
 $bottomleft = array($longitude - $londelta, $latitude - $latdelta);
 $topright = array($longitude + $londelta, $latitude + $latdelta);
 
-var_dump($bottomleft);
-var_dump($topright);
-
 $query = array ("loc" => 
 					array('$within' => 
 						array('$box' => 
 							array($bottomleft , $topright ))));
 							
 $cursor = UtilMongo::getInstance()->getCollection("hotels")->find($query);
-echo "count: " . $cursor->count();
 $return = array("message" => "OK", "response" => array());
 
 while ($cursor->hasNext())
