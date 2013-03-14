@@ -5,6 +5,7 @@ include_once './util/UtilMongo.php';
 $params = $_REQUEST["params"];
 
 if (!$params) return json_encode(array("message"=>"ERROR: no params provided"));
+$params = json_decode($params);
 if (!array_key_exists("latitude", $params)) return json_encode(array(message=>"ERROR: no latitude provided"));
 if (!array_key_exists("longitude", $params)) return json_encode(array(message=>"ERROR: no longitude provided"));
 
