@@ -15,8 +15,15 @@ $latitude = (double)($params["latitude"]);
 $londelta = array_key_exists("londelta", $params) ? (double)($params["londelta"]) : 0.1;
 $latdelta = array_key_exists("latdelta", $params) ? (double)($params["latdelta"]) : 0.1;
 
-$query = array ("loc" => array("$within" => array("$box" => array(array($longitude - $londelta, $latitude - $latdelta), array($longitude + $londelta, $latitude + $latdelta)))));
-echo "Number of hotels in the query: " . UtilMongo::getInstance()->getCollection("hotels")->count($query);
+$bottomleft = array($longitude - $londelta, $latitude - $latdelta);
+$topright = array($longitude + $londelta, $latitude + $latdelta);
+
+$query = array ("loc" => 
+					array("$within" => 
+						array("$box" => 
+							array($bottomleft , $topright ))));
+
+var_dump($query);
 $cursor = UtilMongo::getInstance()->getCollection("hotels")->find($query);
 $return = array("message" => "OK", "response" => array());
 
