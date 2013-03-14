@@ -24,6 +24,7 @@ $query = array ("loc" =>
 							array($bottomleft , $topright ))));
 
 $cursor = UtilMongo::getInstance()->getCollection("hotels")->find($query);
+echo "count: " . $cursor->count();
 $return = array("message" => "OK", "response" => array());
 
 while ($cursor->hasNext())
