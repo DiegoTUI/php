@@ -12,8 +12,10 @@ if (!array_key_exists("longitude", $params)) return json_encode(array(message=>"
 
 $longitude = (double)($params["longitude"]);
 $latitude = (double)($params["latitude"]);
-$londelta = array_key_exists("londelta", $params) ? (double)($params["londelta"]) : 0.1;
-$latdelta = array_key_exists("latdelta", $params) ? (double)($params["latdelta"]) : 0.1;
+$londelta = 0.1;
+if (array_key_exists("londelta", $params)) $londelta = (double)($params["londelta"]);
+$latdelta = 0.1;
+if (array_key_exists("latdelta", $params)) $latdelta = (double)($params["latdelta"]);
 
 $bottomleft = array($longitude - $londelta, $latitude - $latdelta);
 $topright = array($longitude + $londelta, $latitude + $latdelta);
