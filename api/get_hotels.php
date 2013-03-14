@@ -23,7 +23,6 @@ $query = array ("loc" =>
 						array('$box' => 
 							array($bottomleft , $topright ))));
 
-var_dump($query);
 $cursor = UtilMongo::getInstance()->getCollection("hotels")->find($query);
 $return = array("message" => "OK", "response" => array());
 
