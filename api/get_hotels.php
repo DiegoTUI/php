@@ -19,8 +19,8 @@ $bottomleft = array($longitude - $londelta, $latitude - $latdelta);
 $topright = array($longitude + $londelta, $latitude + $latdelta);
 
 $query = array ("loc" => 
-					array("$within" => 
-						array("$box" => 
+					array('$within' => 
+						array('$box' => 
 							array($bottomleft , $topright ))));
 
 var_dump($query);
