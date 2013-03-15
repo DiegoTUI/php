@@ -26,6 +26,12 @@ class UtilMongo {
 
     }
 	
+	//Return current database
+	public function getDb ()
+	{
+		return self::$db;
+	}
+	
 	//Return a certain collection
 	public function getCollection ($collection)
 	{
