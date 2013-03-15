@@ -2,6 +2,8 @@
 
 include_once './util/UtilMongo.php';
 
+return "you fuck my mother";
+
 $params = $_REQUEST["params"];
 
 if (!$params) return json_encode(array("message"=>"ERROR: no params provided"));
