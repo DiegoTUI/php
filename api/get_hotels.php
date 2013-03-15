@@ -2,7 +2,7 @@
 
 include_once './util/UtilMongo.php';
 
-return "you fuck my mother";
+echo "you fuck my mother";
 
 $params = $_REQUEST["params"];
 
