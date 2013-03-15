@@ -27,7 +27,7 @@ $querybox = array ("loc" =>
 $querygeonear = array('geoNear'=>'hotels', 'near'=>array($longitude, $latitude), 'num'=>$maxnumber, 'maxDistance'=>$maxdistance);
 							
 //$cursor = UtilMongo::getInstance()->getCollection("hotels")->find($query);
-$reply = UtilMongo::getInstance()->gatDb()->command($querygeonear);
+$reply = UtilMongo::getInstance()->getDb()->command($querygeonear);
 $return = array("message" => "OK", "response" => array());
 
 foreach ($reply["results"] as $item){
