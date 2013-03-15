@@ -14,23 +14,31 @@ $longitude = (double)($params["longitude"]);
 $latitude = (double)($params["latitude"]);
 $londelta = array_key_exists("longitudeDelta", $params)? (double)($params["longitudeDelta"]) : 0.1;
 $latdelta = array_key_exists("latitudeDelta", $params) ? (double)($params["latitudeDelta"]) : 0.1;
+$maxnumber = array_key_exists("maxNumber", $params) ? (double)($params["maxNumber"]) : 50;
+$maxdistance = $londelta > $latdelta ? $londelta : $latdelta;
 
 $bottomleft = array($longitude - $londelta, $latitude - $latdelta);
 $topright = array($longitude + $londelta, $latitude + $latdelta);
 
-$query = array ("loc" => 
+$querybox = array ("loc" => 
 					array('$within' => 
 						array('$box' => 
 							array($bottomleft , $topright ))));
+$querygeonear = array('geoNear'=>'hotels', 'near'=>array($longitude, $latitude), 'num'=>$maxnumber, 'maxDistance'=>$maxdistance);
 							
-$cursor = UtilMongo::getInstance()->getCollection("hotels")->find($query);
+//$cursor = UtilMongo::getInstance()->getCollection("hotels")->find($query);
+$reply = UtilMongo::getInstance()->command($querygeonear);
 $return = array("message" => "OK", "response" => array());
 
-while ($cursor->hasNext())
+foreach ($reply["results"] as $item){
+	array_push($return["response"], $item["obj"]);
+}
+
+/*while ($cursor->hasNext())
 {
 	$result = $cursor->getNext();
 	array_push($return["response"], $result);
-}
+}*/
 
 echo json_encode($return);
 
