@@ -5,7 +5,7 @@
  * (C) 2013 TuiInnovation.
  */
 
-$string1 = '<HotelListRQ echoToken="$echoToken$" xmlns="$xmlns$" xmlns:xsi="$xmlns:xsi$" xsi:schemaLocation="$xsi:schemaLocation$"><Language>$Language$</Language><Credentials><User>$Credentials_User$</User><Password>$Credentials_Password$</Password></Credentials><Destination code="$Destination_code$" type="$Destination_type$"></Destination></HotelListRQ>';
+$string1 = '<HotelListRQ echoToken=\"$echoToken$\" xmlns=\"$xmlns$\" xmlns:xsi=\"$xmlns:xsi$\" xsi:schemaLocation=\"$xsi:schemaLocation$\"><Language>$Language$</Language><Credentials><User>$Credentials_User$</User><Password>$Credentials_Password$</Password></Credentials><Destination code=\"$Destination_code$\" type=\"$Destination_type$\"></Destination></HotelListRQ>';
 
 $xml = array(
 	'HotelListRQ' => '<HotelListRQ echoToken="$echoToken$" xmlns="$xmlns$" xmlns:xsi="$xmlns:xsi$" xsi:schemaLocation="$xsi:schemaLocation$"><Language>$Language$</Language><Credentials><User>$Credentials_User$</User><Password>$Credentials_Password$</Password></Credentials><Destination code="$Destination_code$" type="$Destination_type$"></Destination></HotelListRQ>',
@@ -66,6 +66,6 @@ if (array_key_exists('format', $_REQUEST)) {
 	}
 }
 
-echo json_encode($result);
+//echo json_encode($result);
 echo $string1;
 ?>
