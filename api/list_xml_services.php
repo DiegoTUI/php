@@ -5,11 +5,14 @@
  * (C) 2013 TuiInnovation.
  */
 
+$string1 = '<HotelListRQ echoToken="$echoToken$" xmlns="$xmlns$" xmlns:xsi="$xmlns:xsi$" xsi:schemaLocation="$xsi:schemaLocation$"><Language>$Language$</Language><Credentials><User>$Credentials_User$</User><Password>$Credentials_Password$</Password></Credentials><Destination code="$Destination_code$" type="$Destination_type$"></Destination></HotelListRQ>';
+
 $xml = array(
 	'HotelListRQ' => '<HotelListRQ echoToken="$echoToken$" xmlns="$xmlns$" xmlns:xsi="$xmlns:xsi$" xsi:schemaLocation="$xsi:schemaLocation$"><Language>$Language$</Language><Credentials><User>$Credentials_User$</User><Password>$Credentials_Password$</Password></Credentials><Destination code="$Destination_code$" type="$Destination_type$"></Destination></HotelListRQ>',
 
 	'TicketAvailRQ' => '<TicketAvailRQ echoToken="$echoToken$" sessionId="$sessionId$" xmlns="$xmlns$" xmlns:xsi="$xmlns:xsi$" xsi:schemaLocation="$xsi:schemaLocation$"><Language>$Language$</Language><Credentials><User>$Credentials_User$</User><Password>$Credentials_Password$</Password></Credentials><Destination code="$Destination_code$" type="$Destination_type$"></Destination><PaginationData itemsPerPage="$PaginationData_itemsPerPage$" pageNumber="$PaginationData_pageNumber$"/><ServiceOccupancy><AdultCount>$ServiceOccupancy_AdultCount$</AdultCount><ChildCount>$ServiceOccupancy_ChildCount$</ChildCount></ServiceOccupancy><DateFrom date="$DateFrom_date$"/><DateTo date="$DateTo_date$"/></TicketAvailRQ>'
 );
+
 
 //In the future this can be read from a mongoDB
 $json = array(
@@ -64,4 +67,5 @@ if (array_key_exists('format', $_REQUEST)) {
 }
 
 echo json_encode($result);
+echo $string1;
 ?>
