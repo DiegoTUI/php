@@ -1,7 +1,7 @@
 <?php
 
-$field1 = $_REQUEST["field1"];
-$field2 = $_REQUEST["field2"];
+$field1 = $_GET["field1"];
+$field2 = $_GET["field2"];
 
 $post_body = file_get_contents('php://input');
 
