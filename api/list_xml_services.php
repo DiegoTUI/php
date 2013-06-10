@@ -20,10 +20,10 @@ $json = array(
 			'@xmlns' => '$xmlns$',
 			'@xmlns:xsi' => '$xmlns:xsi$',
 			'@xsi:schemaLocation' => '$xsi:schemaLocation$',
-			'Language' => array('#' => '$Language$'),
+			'Language' => '$Language$',
 			'Credentials' => array(
-				'User' => array('#' => '$Credentials_User$'),
-				'Password' => array('#' => '$Credentials_Password$')),
+				'User' => '$Credentials_User$',
+				'Password' => '$Credentials_Password$'),
 			'Destination' => array(
 				'@code' => '$Destination_code$',
 				'@type' => '$Destination_type$')
@@ -36,10 +36,10 @@ $json = array(
 			'@xmlns' => '$xmlns$',
 			'@xmlns:xsi' => '$xmlns:xsi$',
 			'@xsi:schemaLocation' => '$xsi:schemaLocation$',
-			'Language' => array('#' => '$Language$'),
+			'Language' => '$Language$',
 			'Credentials' => array(
-				'User' => array('#' => '$Credentials_User$'),
-				'Password' => array('#' => '$Credentials_Password$')),
+				'User' => '$Credentials_User$',
+				'Password' => '$Credentials_Password$'),
 			'Destination' => array(
 				'@code' => '$Destination_code$',
 				'@type' => '$Destination_type$'),
@@ -47,8 +47,8 @@ $json = array(
 				'@itemsPerPage' => '$PaginationData_itemsPerPage$',
 				'@pageNumber' => '$PaginationData_pageNumber$'),
 			'ServiceOccupancy' => array(
-				'AdultCount' => array('#' => '$ServiceOccupancy_AdultCount$'),
-				'ChildCount' => array('#' => '$ServiceOccupancy_ChildCount$')),
+				'AdultCount' => '$ServiceOccupancy_AdultCount$',
+				'ChildCount' => '$ServiceOccupancy_ChildCount$'),
 			'DateFrom' => array('@date' => '$DateFrom_date$'),
 			'DateTo' => array('@date' => '$DateTo_date$')
 		)
