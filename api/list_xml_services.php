@@ -26,7 +26,8 @@ $json = array(
 				'Password' => '$Credentials_Password$'),
 			'Destination' => array(
 				'@code' => '$Destination_code$',
-				'@type' => '$Destination_type$')
+				'@type' => '$Destination_type$',
+				'#value' => '$Destination_Name$')
 		)
 	),
 	'TicketAvailRQ' => array(
